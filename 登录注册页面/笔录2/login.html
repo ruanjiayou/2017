@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="css/login.css" rel="stylesheet" />
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/placeholder.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/jquery.md5.js"></script>
+    <script>
+        $(function () {
+            $.holder.init();
+            $("#form1").validate({
+                rules: {
+                    txtUserName: { required: true, maxlength: 20 },
+                    txtPassword: { required: true, maxlength: 20 }
+                },
+                messages: {
+                    txtUserName: { required: "<span class='arrow'></span>请输入用户名！", maxlength: "<span class='arrow'></span>长度不能超过20个！" },
+                    txtPassword: { required: "<span class='arrow'></span>请输入姓名！", maxlength: "<span class='arrow'></span>长度不能超过20个！" }
+                },
+                errorPlacement: function (error, element) {
+                    element.parent().css("position", "relative");
+                    error.addClass("unvalid").css({ "top": element.get(0).offsetTop + element.get(0).offsetHeight + "px", "left": element.get(0).offsetLeft + "px" });
+                    error.insertAfter(element);
+                }
+            });
+
+            //点击提交
+            $("#login").click(function () {
+                submitForm();
+            });
+            //回车键处理
+            $(".f_user").on("keyup", function (e) {
+                e = e ? e : window.event;
+                if (e.keyCode == 13) {
+                    if ($(".f_psw").val() == "") {
+                        $(".f_psw").focus();
+                    }
+                    submitForm();
+                }
+            });
+            $(".f_psw").on("keyup", function (e) {
+                e = e ? e : window.event;
+                if (e.keyCode == 13) {
+                    if ($(".f_user").val() == "") {
+                        $(".f_user").focus();
+                    }
+                    submitForm();
+                }
+            });
+
+            function submitForm() {
+                //验证通过后进行提交 
+                if ($("#form1").valid()) {
+                    //loading效果
+                    $(".loginMask").css("display", "block");
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json",
+                        url: "ajax/UserService.asmx/UserLoginCheck",
+                        dataType: "json",
+                        data: "{ userName:'" + $(".f_user").val() + "',userPwd:'" + $.md5($(".f_psw").val())+"'}",
+                        success: function (status) {
+                            console.log(status.d);
+                            if (status.d == "success") {
+                                window.top.location = "Default.aspx";
+                            }
+                            else if (status.d == "null") {
+                                alert("用户账号不存在！");
+                                $(".loginMask").css("display", "none");
+                            }
+                            else if (status.d == "reject") {
+                                alert("用户名或密码错误！");
+                                $(".loginMask").css("display", "none");
+                            }
+                            else if (status.d == "forbidden") {
+                                alert("该用户未启用！");
+                                $(".loginMask").css("display", "none");
+                            }
+                            else {
+                                alert("系统出错了~");
+                                $(".loginMask").css("display", "none");
+                            }
+                        },
+                        error: function () {
+                            alert("出现未知错误，请刷新页面！");
+                            $(".loginMask").css("display", "none");
+                        }
+                    });
+                }
+            }
+
+        });
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <h2 class="title">全媒体大数据云服务管理平台</h2>
+        <h2 class="company">深圳市国投数字技术有限公司</h2>
+        <div id="hd_bg"></div>
+        <div id="login_box">
+            <img src="css/images/user_login.png" class="user" />
+            <img src="css/images/psw.png" class="psw" />
+            <input name="txtUserName" type="text" class="f_user" value="" placeholder="用户名" />
+            <input name="txtPassword" type="password" class="f_psw" value="" placeholder="密码"/>
+            <a id="login" href="JavaScript:;"></a> 
+        </div>
+    </form>
+    <div class="loginMask">
+        <div><!--bgc black--></div>
+        <div>
+            <div class="main">
+                <p>登录中...</p>
+            </div>
+        </div>
+    </div>
+</body>
+</body>
+</html>

@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bootstrapValidator/css/bootstrapValidator.css"/>
+    
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="bootstrap-3.3.7/js/bootstrap.js"></script>
+    <script src="bootstrapValidator/js/bootstrapValidator.js"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <form class="form-signin form-horizontal">
+            <xmp>
+            1.引入bootstrap样式、bootstrapValidator样式
+            2.引入jQuery、bootstrap.js、bootstrapValidator.js
+            3.表单 .form-horizontal 用于验证提示结果 不然后缀图标不正常
+                   .form-group 表单项必须在这个类中 不然无法进行验证
+                   .form-control 给input用于右侧留padding 更好显示后缀图标 (会覆盖.col-*的width 如果要多列显示 则input或select外面需要包裹一层div .col-* 前面的label也是这样)
+                   分成多列后div两端有padding 很烦~
+                        <label class="col-sm-2 control-label">xx</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"/>
+                        </div>
+            4.验证
+                a.type为submit的按钮 点击会进行验证 成功后会自动跳转
+                b.$(formSelector).bootstrapValidator("valide") js代码触发submit事件
+                c.$(formSelector).data("bootstrapValidator").isValid() 进行验证 不跳转(返回验证结果bool值)
+                d.$(formSelector).data("bootstrapValidator").resetForm(true) 清空
+            </xmp>
+            <div class="">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">用户名</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="txtUserName" name="txtUserName" class="form-control" placeholder="用户名" required autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">密码</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="txtUserPwd" name="txtUserPwd" class="form-control" placeholder="密码" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">密码确认</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="txtReUserPwd" name="txtReUserPwd" class="form-control" placeholder="密码" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">协议</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="txtProtocal" name="txtProtocal" type="checkbox"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">性别</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="ddlSex" name="ddlSex" >
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">手机号</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="txtPhone" name="txtPhone" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">email</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="txtEmail" name="txtEmail" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">时间</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="txtTime" name="txtTime" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">自定义</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="txtCustom" name="txtCustom" type="text" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">数字</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="txtNumber" name="txtNumber" type="text"/>
+                    </div>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" id="submit">登录</button>
+            </div>
+        </form>
+    </div>
+    <script>
+    $('form').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            txtUserName: {
+                message: '用户名验证失败',
+                validators: {
+                    //非空提示
+                    notEmpty: {
+                        message: '用户名不能为空'
+                    },
+                    //长度提示
+                    stringLength: {
+                        min: 6,
+                        max: 12,
+                        message: '用户名必须在6-12之间！'
+                    }
+                }
+            },
+            txtUserPwd: {
+                message: '密码无效',
+                validators: {
+                    notEmpty: {
+                        message: '密码不能为空'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 12,
+                        message: '密码长度在6-12之间！'
+                    },
+                    different: {//不能和用户名相同
+                         field: 'txtUserName',//需要进行比较的input name值
+                         message: '不能和用户名相同'
+                     },
+                     regexp: {//匹配规则
+                         regexp: /^[a-zA-Z0-9_\.]+$/,
+                         message: 'The password can only consist of alphabetical, number, dot and underscore'
+                     }
+                }
+            },
+            txtReUserPwd: {
+                message: '密码无效',
+                validators: {
+                    notEmpty: {
+                         message: '用户名不能为空'
+                     },
+                     stringLength: {
+                         min: 6,
+                         max: 30,
+                         message: '用户名长度必须在6到30之间'
+                     },
+                     identical: {//相同
+                         field: 'txtUserPwd',
+                         message: '两次密码不一致'
+                     }
+                }
+            },
+            txtProtocal: {
+                message: '必须统一协议',
+                validators: {
+                    notEmpty: {
+                        message: '必须同意协议'
+                    }
+                }
+            },
+            ddlSex: {
+                message: '请选择性别',
+                validators: {
+                    notEmpty: {
+                        message: '请选择性别'
+                    }
+                }
+            },
+            txtPhone: {
+                message: '无效的手机号',
+                validators: {
+                    notEmpty: {
+                        message: '手机号码不能为空'
+                    },
+                    stringLength: {
+                        min: 11,
+                        max: 11,
+                        message: '请输入11位手机号码'
+                    },
+                    regexp: {
+                        regexp: /^1[3|5|8]{1}[0-9]{9}$/,
+                        message: '请输入正确的手机号码'
+                    }
+                }
+            },
+            txtEmail: {
+                validators: {
+                    notEmpty: {
+                        message: '邮箱地址不能为空！'
+                    },
+                    emailAdress: {
+                        message: '邮箱地址无效！'
+                    },
+                    regexp: {
+                        regexp: /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/,
+                        message: '邮箱地址无效！'
+                    }
+                }
+            },
+            txtTime: {
+                message: '',
+                validators: {
+                    notEmpty: {
+                        message: '日期不能为空'
+                    },
+                    date : {  
+                        format : 'YYYY-MM-DD',  
+                        message : '日期格式不正确'  
+                    }
+                }
+            },
+            txtCustom: {
+                message: '这到底是干什么的？',
+                validators: {
+                    notEmpty: {
+                        message: '日期不能为空'
+                    },
+                    date : {  
+                        format : 'YYYY-MM-DD',  
+                        message : '日期格式不正确'  
+                    },
+                    callback: {
+                        message: '出错了',
+                        callback: function(value, validateor){
+                            var param = new Date();
+                            return new Date(Date.parse(param.getFullYear()+'-'+(param.getMonth()+1)+'-'+param.getDate())) <= new Date(Date.parse(value))
+                        }
+                    }
+                    
+                }
+            },
+            txtNumber: {
+                message: '',
+                validators: {
+                    notEmpty: {
+                        message: '日期不能为空'
+                    },
+                    digits: {
+                        message: '请输入数字'
+                    },
+                    greaterThan: {
+                        value: 0
+                    }
+                }
+            }
+        }
+    });
+    $("#submit").on("click",function(){
+        if($("form").data("bootstrapValidator").isValid()){
+            console.log("success");
+            //TODO ajax提交后台验证
+        }
+        else{
+            console.log("failed")
+        }
+    });
+    </script>
+</body>
+</html>

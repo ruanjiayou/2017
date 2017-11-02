@@ -1,0 +1,33 @@
+2017-3-2 22:36:17
+    对话框的改进想法：
+    1.每个对话框实例都要new 出来 基类是 function Dialog()
+        可选json参数
+    2.html结构使用钩子 : data-*
+                        -title close
+                        ----view
+                            ----content
+    3.使用默认配置属性
+        size
+        autoResize
+        draggable
+    4.样式以json格式合并到js中
+    5.Open()方法可选json参数
+        如 url title等重要变量 和 preOpen()重要函数
+    6.其他的基本不变
+        闭包、SetSize()/Center()/MouseDown()/Move()/Limit()/Close()/
+2017-5-3 08:43:33
+    结构使用data-dialog属性钩子控制
+    PreOpen Closed方法接口
+    Open()方法支持json参数重载
+    一个core.dialog.js文件简洁明了
+    
+    支持IE7/8/9、
+    设置了拖动边界、
+    有拖动选项和居中、
+    Open时有fadein效果、
+    open时可设置window、
+    使用闭包不用每次拼接html、
+    样式合并在js中(小图片也可以)、
+    拖动title cursor进了iframe不会打断
+    CloseDialog()全局函数用于隐藏对话框、
+    http://192.168.1.22:2017/dev-me-对话框/测试-对话框.html

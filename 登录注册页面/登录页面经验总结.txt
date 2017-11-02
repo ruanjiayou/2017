@@ -1,0 +1,18 @@
+1.样式文件
+    单独一个login.css
+    图片用相对地址(本地测试时不会报错，file://xxx 用绝对路径就有问题)
+2.功能点要求
+    兼容性良好的place-holder
+    必填字段的验证
+    ajax提交验证(密码前端md5加密)
+    提交按钮和回车事件
+    loading效果(ajax返回后要隐藏)
+3.后台部分
+    login页面cs部分 如果URL中有nosession字段则清空保存的Session数据
+    WebService WebConfig要加 Httpget Httppost
+               asmx中类前要加[System.Web.Script.Services.ScriptService]
+               asmx函数前要加[WebMethod(EnableSession=true)] 如果要操作Session的话
+               
+4.其他
+    md5加密后的大小写问题：所有人要统一
+    设置的Session标志问题：所有人要统一

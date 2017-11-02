@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport"/>
+	<title>test</title>
+    <link rel="stylesheet" href="css/trace-search.css"/>
+    <script src="js/adapt.js"></script>
+    <script src="js/rem.min.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="top_title clearfix">
+            <h1><img src="css/images/logo_yj.png" />奶产品质量安全追溯系统</h1>
+        </div>
+        <div class="main">
+            <h2>产品信息</h2>
+            <div class="product_info clearfix">
+                <img src="css/images/pic_milk.png" />
+                <ul>
+                    <li><label>追溯码：</label><asp:Literal runat="server" Text="123456sfd"></asp:Literal></li>
+                    <li><label>产品名称：</label><asp:Literal runat="server" Text="牛奶"></asp:Literal></li>
+                    <li><label>产品品类：</label><asp:Literal runat="server" Text="原味乳"></asp:Literal></li>
+                    <li><label>净含量：</label><asp:Literal runat="server" Text="20g"></asp:Literal></li>
+                    <li><label>单价：</label><asp:Literal runat="server" Text="5元/盒"></asp:Literal></li>
+                    <li><label>保质期：</label><asp:Literal runat="server" Text="30天"></asp:Literal></li>
+                </ul>
+            </div>
+            <h2>追溯信息</h2>
+            <ul>
+                <li>
+                    <h3>挤奶</h3>
+                    <table>
+                        <tr>
+                            <th style="width:30%;">采集批次号</th>
+                            <th>采集重量</th>
+                            <th>采集人员</th>
+                            <th>采集日期</th>
+                        </tr>
+                        <tr>
+                            <td><asp:Label runat="server" Text="123456789abc"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="50g"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="网二"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="2017.02.05"></asp:Label></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <h3>消毒</h3>
+                    <table>
+                        <tr>
+                            <th style="width:30%;">奶桶编号</th>
+                            <th>奶桶标签</th>
+                            <th>消毒人员</th>
+                            <th>消毒时间</th>
+                        </tr>
+                        <tr>
+                            <td><asp:Label runat="server" Text="123456789abc"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="标签XXX"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="网二"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="2017.02.05"></asp:Label></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <h3>检疫</h3>
+                    <table>
+                        <tr>
+                            <th style="width:30%;">采集批次号</th>
+                            <th>采集重量</th>
+                            <th>采集人员</th>
+                            <th>采集日期</th>
+                        </tr>
+                        <tr>
+                            <td><asp:Label runat="server" Text="123456789abc"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="50g"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="网二"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="2017.02.05"></asp:Label></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <h3>加工</h3>
+                    <table>
+                        <tr>
+                            <th>加工工艺</th>
+                            <th>加工时间</th>
+                            <th>加工人员</th>
+                        </tr>
+                        <tr>
+                            <td><asp:Label runat="server" Text="xxx"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="2017.02.05"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="王八"></asp:Label></td>
+                        </tr>
+                        <tr>
+                            <td><asp:Label runat="server" Text="xxx"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="2017.02.05"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="王八"></asp:Label></td>
+                        </tr>
+                        <tr>
+                            <td><asp:Label runat="server" Text="xxx"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="2017.02.05"></asp:Label></td>
+                            <td><asp:Label runat="server" Text="王八"></asp:Label></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <h3>包装</h3>
+                    <p>产品名称：牛奶</p>
+                    <p>包装类别：类别A</p>
+                    <p>包装形式：形式A</p>
+                    <p>营养素包：维生素A、维生素B</p>
+                    <p>净含量：20g</p>
+                    <p>单价：5元/盒</p>
+                    <p>保质期：30天</p>
+                </li>
+            </ul>
+        </div>
+    </form>
+</body>
+</html>

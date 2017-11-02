@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>test</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <style>
+        #center {padding:2rem;}
+        
+        .square { width: 80px; border: 1px solid #ccc; }
+        .square > div { position: relative; padding-top: 100%; overflow: hidden;}
+        .square > div > img { position: absolute; left: 0; top: 0; width: 100%; }
+        
+        .square1n > div { padding-top: 180%; }
+        .squaren1 > div { padding-top: 50%; }
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p id="show">测试</p>
+        <p>1:1</p>
+        <div class="square">
+            <div>
+                <img src="horizon.jpg"/>
+            </div>
+            <p>???</p>
+        </div>
+        <div class="square">
+            <div>
+                <img src="vertical.jpg"/>
+            </div>
+        </div>
+        <p>1:1.8</p>
+        <div class=" square square1n">
+            <div>
+                <img src="horizon.jpg"/>
+            </div>
+        </div>
+        <div class=" square square1n">
+            <div>
+                <img src="vertical.jpg"/>
+            </div>
+        </div>
+        <p>2:1(1:0.5)</p>
+        <div class=" square squaren1">
+            <div>
+                <img src="horizon.jpg"/>
+            </div>
+        </div>
+        <div class=" square squaren1">
+            <div>
+                <img src="vertical.jpg"/>
+            </div>
+        </div>
+    </div>
+<script>
+
+</script>
+</body>
+</html>

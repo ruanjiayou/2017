@@ -1,0 +1,21 @@
+必须考考虑不支持box-sizing的情况
+已完美解决固定底部logo问题 
+
+支持box-sizing：
+1.不足一屏(包括padding-bottom)
+2.超过一屏(包括padding-bottom) 
+3.弹出键盘造成window.resize
+    1.js添加css 样式
+    body {box-sizing: border-box; }
+    bodyBottomLogo { padding-bottom: 4rem/40px; }
+        bottomLogo { position: absolute; bottom: 1rem; height: 3rem; width: 100%; }
+    2.body和bottomLogo添加类名
+    3.设置最小高度body为可视区高度
+    
+不支持box-sizing：
+1.不足一屏(不包括padding-bottom)
+2.超过一屏(不包括padding-bottom)
+3.弹出键盘造成window.resize
+    1.js添加css 样式
+    2.body和bottomLogo添加类名
+    3.设置最小高度body min(可视高度-padding-bottom, bodyheight-padding-bottom)

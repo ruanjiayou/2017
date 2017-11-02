@@ -1,0 +1,17 @@
+2017-1-2 23:21:14
+    浏览器默认的viewport叫做 layout viewport
+    浏览器可视区域的大小叫做 visual viewport
+    能完美适配移动设备的viewport叫做 ideal viewport
+    所有的iphone的ideal viewport宽度都是320px
+    
+    1.动态设置viewport的scale：
+    var scale = 1 / devicePixelRatio;
+    document.querySelector('meta[name="viewport"]').setAttribute('content','initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+    2.动态设置html的font-size：
+    
+    可以做到
+    1.边框设为1px
+    2.设计稿尺寸与手机中的缩放效果一样
+2017-1-8 21:52:06
+    前天发版本时测到 微信中字体被放到~~ 是因为webkit会放大主体内容的字体 便于阅读 设置max-height:9999px;就好了 webkit-text-size-adjust:none;好似没效果
+    

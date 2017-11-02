@@ -1,0 +1,39 @@
+﻿/* 顶部广告 */
+.top_ad { height: /*90px*/0; background: #5a0183 url(images/ad-bg.png) center center no-repeat; }
+.center { width: 1200px; margin: 0 auto; }
+
+.logo { float: left; margin: 62px 0 66px 0; }
+    .logo a + a { margin-left: 10px; color: #999999; font-size: 18px; }
+.back { float: right; margin-top: 75px; background: url(images/arrow-back.png) left 6px no-repeat; font-size: 14px; color: #838383; text-indent: 14px; }
+
+.main { border-top: 1px solid #f1f1f1; border-bottom: 1px solid #f1f1f1; }
+.register_box { float: left; width: 710px; margin: 10px 0; border-right: 1px solid #f1f1f1; padding: 25px 0 20px; color: #000; font-size: 16px; font-family: "宋体"; }
+    .register_box > li { margin-top: 15px; }
+    .register_box > li > label { float: left; width: 220px; line-height: 37px; text-align: right; }
+    .register_box > li > div { margin-left: 240px;}
+    .register_box input[type="text"], .register_box input[type="password"] { width: 330px; border: 1px solid #dedede; padding: 10px; }
+    .verification_code input[type="text"] { float: left; width: 70px; }
+    .verification_code label { display: inline-block; height: 36px; line-height: 36px; margin-left: 10px; border: 1px solid #dedede; padding: 0 8px; background-color: #f1f1f1; color: #6c6c6c; cursor: pointer; font-size: 12px; }
+    .protocol { padding: 12px 0; }
+    .protocol input, .protocol a { float: left; }
+    .protocol a { margin-left: 10px; color: #ffa02c; font-size: 12px; }
+    .register_btn { display: block; width: 210px; line-height: 36px; background-color: #dedede; border-radius: 3px; color: #838383; cursor: pointer; text-align: center; }
+.login_box { float: left; margin-left: 120px; font-size: 14px; font-family: "宋体"; }
+    .login_box > p { margin: 36px 0 32px 0; color: #383838; }
+    .login_box > p > a  { color: #ffa02c; text-decoration: underline; }
+    .QR_box { width: 222px; line-height: 45px; border: 1px solid #dedede; padding-bottom: 30px; color: #838383; text-align: center; }
+    .QR_box img { display: block; width: 130px; margin: 17px auto 0; }
+
+    .coop_count_box > li { float: left; }
+        .coop_count_box > li:first-child { width: 180px; border-right: 1px solid #e6e6e6; }
+        .coop_count_box > li + li { margin-left: 20px; }
+        .coop_count_box p { margin: 26px 0 13px 0; font-family: "微软雅黑"; color: #b3b3b3; }
+        .coop_count_box ul { margin-top: 13px; }
+        .coop_count_box ul li { float: left; margin-right: 10px; }
+    .icon_qq, .icon_weibo, .icon_alipay, .icon_taobao { display: block; width: 28px; height: 28px; background-position: center center; background-repeat: no-repeat; text-indent: -9999px; }
+        .icon_qq { background-image: url(images/icon-l-qq.png); }
+        .icon_weibo { background-image: url(images/icon-l-sina.png); }
+        .icon_alipay { background-image: url(images/icon-l-zfb.png); }
+        .icon_taobao { background-image: url(images/icon-l-taobao.png); }
+
+.validate-error { border-color: red !important; }

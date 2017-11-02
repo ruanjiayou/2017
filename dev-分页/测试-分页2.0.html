@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="Author" content="阮家友">
+    <meta name="Keywords" content="HTML,model,test">
+    <meta name="Description" content="special effect">
+    <meta name="time" content="2016-3-23 19:00:08">
+    <style type="text/css">
+        html, body{font-size:14px; margin:0px; padding:0px; }
+        li {list-style:none; }
+        img {border:0px; }
+        a {text-decoration:none; }
+        a:link{color:#000000; }
+        a:visited{color:#000000; }
+        a:hover{color:#de7916; }
+        .clear {clear:both; }        
+        #center {width:800px; margin:0 auto; padding:20px; }
+        #fenye {padding-top:40px;min-width:50%;margin:0 auto;}
+        #fenye .disable {border-color:#aaaaaa;}
+        .disable a:hover, .disable a:link, .disable a:visited {color:#aaaaaa;}
+        #fenye li{float:left;margin:0 5px;border:1px solid #333;min-width:32px;height:30px;line-height:30px;}
+        #fenye .noborder {border:none;}
+        #fenye input {width:30px;border:1px solid #333;}
+        .curr {background-color:#c00;}
+        #fenye a {display:block;padding:0px 5px;text-align:center;}
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p>var items = 612,    //记录总数<br/>
+    NumPerPage = 20,//每页篇数<br/>
+    PagePerPage = 10,//每页分页中 页数<br/>
+    Pages = Math.ceil(items/NumPerPage),<br/>
+    StartPage = 1,<br/>
+    CurrentPage = 1;<br/>
+    
+    addEvent() <br/>
+    delegate() <br/>
+    showPage() 更新ulinnerHTML <br/>
+    ul节点 绑定单击事件，代理：捕获a的单击事件 不是curr&&没有disable或disable为false 则调用showPage 否则不处理<br/>
+    兼容IE
+    </p>
+        <ul id="fenye"></ul>
+    </div>
+<script type="text/javascript">
+var items = 612,    //记录总数
+    NumPerPage = 20,//每页篇数
+    PagePerPage = 10,//每页分页中 页数
+    Pages = Math.ceil(items/NumPerPage),
+    StartPage = 1,
+    CurrentPage = 1;
+var fenye = document.getElementById("fenye");
+addEvent(fenye, "click", deal);
+showPage(1, 1);
+function deal(e){
+    e = e||window.event;//事件兼容处理
+    var obj = e.target?e.target:e.srcElement;//捕获事件
+        bjump = false,//是否跳转
+        pageID = null,//A代表的分页ID
+        index = null;//A在当前的排位顺序
+    if(obj.nodeName == "A"){
+        bjump = true;//只要parentNode 没有 disable或curr就跳转
+        if(hasClass(obj.parentNode,"disable")){//只是占位 不跳转
+            bjump = false;
+        }
+        if(hasClass(obj.parentNode,"curr")){//当前页 不跳转
+            bjump = false;
+        }
+    }
+    else{
+        return false;
+    }
+    //if   进行跳转 index在0-9间就不翻页  否则要翻页 ，但要留2页
+    //else 按钮翻页定位
+    if(true === bjump){
+        pageID = attr(obj,"pageid");
+        index = attr(obj,"index");
+        if(pageID!=null && index!=null){//确保不出错
+            CurrentPage = pageID;//这个不变 
+            if(index!=0 && index!=9){//还是当前页
+                showPage(StartPage,pageID);
+            }
+            if(0 == index){//自动翻页 上一页
+                if(StartPage - PagePerPage>=1){
+                    StartPage = StartPage - PagePerPage + 2;
+                }
+                else{
+                    StartPage = 1;
+                }
+            }
+            if(9 == index){//自动翻页 下一页
+                if(StartPage + PagePerPage >= Pages){
+                    
+                }
+                else{
+                    StartPage = StartPage + PagePerPage - 2;
+                }
+            }
+        }
+        else{
+            switch(obj.innerHTML){
+                case "首页":
+                    StartPage = 1;
+                    CurrentPage = 1;
+                break;
+                case "上一页":
+                    if(StartPage-PagePerPage>=1){
+                        StartPage = StartPage - PagePerPage + 2;
+                    }
+                    else{
+                        StartPage=1;
+                    }
+                    CurrentPage = StartPage + 1;
+                break;
+                case "下一页":
+                    if(StartPage+PagePerPage<=Pages){
+                        StartPage = StartPage + PagePerPage -2;
+                    }
+                    else{
+                        StartPage=Pages-PagePerPage;
+                    }
+                    CurrentPage = StartPage + 1;
+                break;
+                case "尾页":
+                    StartPage = Pages - PagePerPage;
+                    CurrentPage = Pages - PagePerPage + 1;
+                break;
+                default:break;
+            }
+        }
+    }
+    showPage(StartPage,CurrentPage);
+}
+//依赖 str2arr attr
+function hasClass(o,sClass){//这里的sclass参数中不能有空格
+    var alls = str2arr(attr(o,"class"));
+    for(var i=0;i<alls.length;i++){
+        if(alls[i]==sClass){
+            return true;
+        }
+    }
+    return false;
+}
+function str2arr(str){//以空格为界限，将字符串转为数组
+	if(null==str){
+        str="";
+    }
+    var strArr="";
+	var z=true;
+	var arr=[];
+	for(var i=0;i<str.length;i++)
+	{
+		if(str.charAt(i)==' ')
+		{
+		//刚从 有字符到空格
+			if(z==false)
+			{
+				strArr+='=';
+				z=true;
+			}
+			else
+				continue;
+		}
+		else
+		{
+			z=false;
+			strArr+=str.charAt(i);
+		}		
+	};
+	arr = strArr.split('=');
+	return arr;
+}
+function attr(o,k,v){// 获取单个属性/设置多个属性json
+    if(2==arguments.length){
+        //获取单个属性
+        if("string"==typeof k){
+            return o.getAttribute(k);
+        }
+        else{//json 设置多个属性
+            for(var i in k){
+                o.setAttribute(i,k[i]);
+            }
+        }
+    }
+    //设置单个属性
+    else{
+        o.setAttribute(k,v);
+    }
+}
+function addEvent(o,  type,  fn) {//绑定事件
+    var handler = fn;
+    if (o.addEventListener) {
+        o.addEventListener(type,  handler,  false);
+    } else if (o.attachEvent) {
+        handler = function () {
+            fn.call(o);
+        };
+        o.attachEvent('on' + type,  handler);
+    }
+}
+function showPage (s, c) {
+    var PageList = "";
+    s = parseInt(s);
+    if (1!=s) {
+        PageList = "<li><a href='javascript:void(0);'>首页</a></li><li><a href='javascript:void(0);'>上一页</a></li>";
+    }
+    else{
+        PageList = "<li class='disable'><a href='javascript:void(0);'>首页</a></li><li class='disable'><a href='javascript:void(0);'>上一页</a></li>";
+    }
+    for(var i = s, j = 0;i < Pages && j < PagePerPage;i++, j++){
+        if(i==c){
+            PageList += "<li class='curr'><a href='javascript:void(0);' "+"pageid='"+i+"' "+"index='"+j+"'>"+i+"</a></li>";
+        }
+        else{
+            PageList += "<li><a href='javascript:void(0);' "+"pageid='"+i+"' "+"index='"+j+"'>"+i+"</a></li>";
+        }
+    }
+    if(s+PagePerPage < Pages){
+        PageList += "<li><a href='javascript:void(0);'>下一页</a></li><li><a href='javascript:void(0);'>尾页</a></li>";
+    }
+    else{
+        PageList += "<li class='disable'><a href='javascript:void(0);'>下一页</a></li><li class='disable'><a href='javascript:void(0);'>尾页</a></li>";
+    }
+    fenye.innerHTML = PageList;
+}
+</script>
+</body>
+</html>

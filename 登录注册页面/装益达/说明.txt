@@ -1,0 +1,5 @@
+placeholder兼容IE9-时 input的margin有影响 会用div wrap包裹input
+圆角IE兼容
+阻止按钮文字被选中
+回车登录 loading事件(显示gif或文字...变化 10秒后显示登录失败 重新登录)
+验证 

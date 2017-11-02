@@ -1,0 +1,169 @@
+/*
+作者：阮家友
+时间：2017-3-29 10:04:32
+说明：分页部分
+    分页信息、分页列表、页码输入、跳转按钮、容量选择
+    2017-7-5 16:33:42 增加pagination-list
+*/
+/*
+作者：阮家友
+时间：2017-5-17 15:41:06
+说明：mixins混合自身不输出样式
+      2017-5-24 09:45:30 不再提供IE8的圆角属性支持。爱要不要。
+*/
+/*
+作者：阮家友
+时间：2017-5-19 14:03:46
+说明：less变量文件
+*/
+/*
+  说明 clearfix进化史中的太多麻烦
+  改用bootstrap中的写法
+  .clearfix:before, .clearfix:after { display: block; height: 0; clear: both; content: ""; font-size: 0; visibility: hidden; }
+   IE7不支持:before :after 
+  .clearfix { *zoom: 1; } 
+*/
+/* css3圆角 */
+.pagination{
+    margin: 14px 0;
+}
+.pagination:before, .pagination:after{
+    display: table;
+
+    content: " ";
+}
+.pagination:after{
+    clear: both;
+}
+.pagination div{
+    line-height: 2;
+
+    float: left;
+}
+.pagination div span{
+    padding: 0 3px;
+
+    color: #0f88eb;
+}
+.pagination ul{
+    display: inline-block;
+
+    margin: 0;
+
+    list-style: none;
+}
+.pagination ul ul{
+    float: left;
+}
+.pagination li{
+    float: left;
+
+    margin-left: 7px;
+
+    list-style: none;
+}
+.pagination a{
+    position: relative;
+    z-index: 2;
+
+    display: inline-block;
+
+    padding: 4px 14px;
+
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+
+    color: #0f88eb;
+    border: 1px solid #0f88eb;
+    -webkit-border-radius: 5px;
+            border-radius: 5px;
+
+    *display: inline;
+    *zoom: 1;
+    behavior: url(ie-css3.htc);
+}
+.pagination a:hover{
+    color: #fff;
+    border-color: #0f88eb;
+    background-color: #0f88eb;
+}
+.pagination a.disabled{
+    cursor: not-allowed;
+
+    color: #ccc;
+    border-color: #f0f0f0;
+    background-color: #f0f0f0;
+}
+.pagination a.active{
+    cursor: default;
+
+    color: #fff;
+    background-color: #0f88eb;
+}
+.pagination a.txt{
+    cursor: default;
+
+    color: #ccc;
+    background-color: transparent;
+}
+.pagination select{
+    padding: 3px 7px;
+
+    text-align: center;
+
+    color: #0f88eb;
+    border: 1px solid #0f88eb;
+}
+.pagination select:hover{
+    color: #fff;
+    background-color: #0f88eb;
+}
+.pagination ol{
+    float: right;
+}
+.pagination ol li{
+    line-height: 28px;
+
+    width: 28px;
+    height: 28px;
+
+    text-align: center;
+
+    color: #fff;
+    -webkit-border-radius: 50%;
+            border-radius: 50%;
+    background: #eee;
+}
+.pagination ol li:hover{
+    cursor: pointer;
+}
+.pagination ol li.active{
+    cursor: default;
+
+    background-color: #0f88eb;
+}
+.pagination input{
+    position: relative;
+    z-index: 2;
+
+    -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+    width: 25.2px;
+    min-width: auto;
+    height: 17.5px;
+    padding: 5px;
+
+    text-align: center;
+    vertical-align: top;
+
+    border: 1px solid #0f88eb;
+    -webkit-border-radius: 0;
+            border-radius: 0;
+
+    behavior: url(ie-css3.htc);
+    ime-mode: disabled;
+}
+.pagination input:focus{
+    border-color: #0f88eb;
+}

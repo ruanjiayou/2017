@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>test</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <style>
+        #center {padding:2rem;}
+        .tr { display: table-row; background-color: #ccc; }
+        .tr > div { display: table-cell; width: 1%; height: 400px; text-align: center; vertical-align: middle; }
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p id="show">table-cell 会创建匿名box？</p>
+        <xmp>
+        要点: 1.table-cell width百分比越小实际宽度越接近100%
+              2.要有px高度 vertical-align为middle
+        注意: IE7无效
+        </xmp>
+
+    </div>
+    <div class="tr">
+        <div>
+            <p>xxx</p>
+            <div>yyy</div>
+            <a href="">zzz</a>
+        </div>
+    </div>
+<script>
+
+</script>
+</body>
+</html>

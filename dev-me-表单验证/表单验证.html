@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<title>test</title>
+    <link rel="stylesheet" href="reset.css"/>
+    <link rel="stylesheet" href="extent-temp.css"/>
+    <script src="jquery-1.7.min.js"></script>
+    <script src="common.js"></script>
+    <style>
+        .validate-tip { float: left; }
+        .title { height: 85px; line-height: 85px; margin: 0 30px; border-bottom: 2px solid #e2a318; background: url(/css/images/title-bg.png) center 36px no-repeat; font-size: 22px; text-align: center; }
+        .bottom { margin: 50px 30px 0; border-top: 2px solid #d2d2d2; padding: 35px 0 110px; text-align: center; }
+        textarea { border-color: #ccc; border-radius: 4px; padding: 8px; }
+        #uploadfile { width: 0; height: 0; padding: 0; border: 0; }
+    </style>
+</head>
+<body>
+    <div class="title">发布供应信息</div>
+    <div class="form-item">
+        <label class="w180"><span class="c-red">*</span>供应标题</label>
+        <div>
+            <input id="title" runat="server" class="w420 BGC-gray float-left" type="text" maxlength="20" value="" placeholder="标题" data-validate="{required:'请输入标题！',vtype:'string'}"/>
+            <span class="validate-tip HL36"></span>
+        </div>
+    </div>
+    <div class="form-item">
+        <label class="w180">上传图片</label>
+        <div>
+            <label class="w150 HL22 btn default border-gray float-left" for="SupplyImg">上传图片</label>
+            <div><img id="preview" class="float-left mar-T10" src="default.png" alt="default" style="width:182px;height:100px;"/></div>
+            <span class="validate-tip HL36"></span>
+        </div>
+    </div>
+    <div class="form-item">
+        <label class="w180"><span class="c-red">*</span>供应类型</label>
+        <div>
+            <div id="type" class="select-box w170 BGC-gray float-left">
+                <div>请选择</div>
+                <input id="supplyType" runat="server" autocomplete="off" type="hidden" data-validate="{required:'请选择类型！',vtype:'string',parent:1}"/>
+                <input type="hidden"/>
+                <ul>
+                    <li data-id="0">牲畜供应</li>
+                    <li data-id="1">饲草供应</li>
+                    <li data-id="2">二手物品</li>
+                    <li data-id="3">其他供应</li>
+                </ul>
+            </div>
+            <span class="validate-tip HL36"></span>
+        </div>
+    </div>
+    <div class="form-item">
+        <label class="w180"><span class="c-red">*</span>供应数量</label>
+        <div>
+            <input id="txtCount" runat="server" class="w180 BGC-gray float-left" data-validate="{required:'请输入数量！',vtype:'string'}" type="text" maxlength="10" value=""/>
+            <span class="validate-tip HL36"></span>
+        </div>
+    </div>
+    <div class="form-item">
+        <label class="w180"><span class="c-red">*</span>价格</label>
+        <div>
+            <input id="txtPrice" runat="server" class="w180 BGC-gray float-left" placeholder="价格" data-validate="{required:'请输入价格！',vtype:'custom', reg:'^\\d+(\\.\\d{1,2})?$',tip:'无效的价格'}" type="text" maxlength="10" value=""/>
+            <span class="validate-tip HL36"></span>
+        </div>
+    </div>
+    <div class="form-item">
+        <label class="w180"><span class="c-red">*</span>联系人</label>
+        <div>
+            <input id="txtLinkman" runat="server" class="w180 BGC-gray float-left" placeholder="联系人" data-validate="{required:'请输入联系人！',vtype:'string'}" type="text" maxlength="25" value=""/>
+            <span class="validate-tip HL36"></span>
+        </div>
+    </div>
+    <div class="form-item">
+        <label class="w180"><span class="c-red">*</span>联系方式</label>
+        <div>
+            <input id="txtLinkinfo" runat="server" class="w420 BGC-gray float-left" data-validate="{required:'请输入联系方式！',vtype:'string'}" type="text" maxlength="100" value="" placeholder="手机号，QQ号，微信号"/>
+            <span class="validate-tip HL36"></span>
+        </div>
+    </div>
+    <div class="form-item">
+        <label class="w180">备注</label>
+        <div>
+            <textarea runat="server" id="txtInfo" class="w760 H200 BGC-gray" maxlength="100"></textarea>
+        </div>
+    </div>
+    <div class="bottom">
+        <label id="submit" class="w200 btn btn-lg btn-green">提 交</label>
+    </div>
+<script>
+    //iframe高度调整
+    window.parent.postMessage("{type:'resizeIframe'}", "*");
+    //要进行验证的地方
+    var vld = new FormValidate("supply");
+    vld.Add("supply", ["#title", "#supplyType", "#txtCount", "#txtPrice", "#txtLinkman", "#txtLinkinfo"]);
+    var s = $(".select-box:first")[0];
+    $.select(s, function () {
+        //下拉框选中回调 重新验证
+        if ($(this).hasClass("validate-error")) {
+            vld.Validate("supply");
+        }
+    });
+    $("#submit").click(function () {
+        if (vld.Validate("supply")) {
+            //表单验证成功 TODO：
+            $('#btnOk').click();
+        }
+    });
+</script>
+</body>
+</html>

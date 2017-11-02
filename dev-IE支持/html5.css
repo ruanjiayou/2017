@@ -1,0 +1,2 @@
+﻿/* H5标签兼容低版本IE,页面中需要用条件注释对每个H5标签用document.createElement。 例如：document.createElement("header");*/
+article,aside,dialog,footer,header,section,footer,nav,figure,menu{display:block;}

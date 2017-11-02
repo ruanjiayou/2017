@@ -1,0 +1,45 @@
+ie-css3.htc
+    IE8支持圆角 只相对html文件位置 建议用相对根路径 position zIndex display inline-block 等限制较多
+excanvas.js
+    IE8支持canvas 
+        1.必须在canvas标签加载完成后再引入excanvas.js？貌似不是必须的　　
+        2.与jquery混合使用的时候必须使用jquery1.7以上的版本？ 
+        3.excanvas老是容易：对象不支持“getContext”属性或方法 单独的demo里又没问题~~~
+        操作canvas的js的位置放在底部~~
+        4.究极解决方案：var canvas = document.getElementById("myTreeContainer");
+                        if (typeof window.G_vmlCanvasManager!="undefined") { 
+                            canvas=window.G_vmlCanvasManager.initElement(canvas);
+                            var ctx=canvas.getContext("2d");
+                        }else {
+                            var ctx=canvas.getContext("2d");
+                        }
+        toDataURL() 不支持 不费劲了~
+respond.js
+    IE8支持 只针对宽度的媒体查询 最后加载 只对css文件有效
+trim.js
+    IE8支持trim()函数
+placeholder.js
+    IE9支持placeholder 目前不支持resize事件
+JSON.js
+    IE7支持JSON对象
+rem.js
+    IE8支持rem单位 最后加载 只对css文件有效
+h5.js IE8-不支持自定义标签
+    IE8支持HTML5标签(在使用之前先创建标签) 要初始化样式 使用命名空间也可以解决这个问题
+IE8不支持window.location.origin
+    if(window.location.origin===void 0) window.location.origin = window.location.protocol + "" + window.location.hostname + "" + window.location.port;
+IE8 缓存ajax get请求？有吗
+    ajax请求后面加上时间戳。
+IE8-对css文件大小和数量的限制 文档中只有前31个link或style标记关联的CSS能够应用
+    1.压缩合并css文件　　2.css文件中使用@import url(...)  @import指令下层叠限制不能超过4层 
+
+    IE8中text-align:center文字标签居中，元素并不居中
+        对于文字标签如span、input、p、textarea等没有问题，但是其他非文字标签都会有这个问题。　　解决方法：　　可以在其子元素中加入CSS属性：margin:0 auto;
+    IE9-下img标签出现蓝色边框
+        img{border-width:0px;}
+form中如果只有一个input 他的回车事件会刷新页面
+2017-3-13 15:34:09
+    之前有合并所有js  js4ie.js
+    刚core.js中判断浏览器动态加载js来要好些！
+2017-3-20 14:39:27
+    支持background-size 用htc文件polyfill

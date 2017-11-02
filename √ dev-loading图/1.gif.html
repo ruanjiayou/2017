@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>test</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/core.js"></script>
+    <!--[if lt IE 9]>
+        <script src="../js/excanvas.js"></script>
+    <![endif]-->
+    <style>
+        #center {padding:2rem;}
+        .mask { padding: 1rem; position: absolute; left: 0; top: 0;    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAE0lEQVQYlWNgYGBoIBKPKqSnQgDC4zIBmi3KYAAAAABJRU5ErkJggg==");}
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p id="show">测试</p>
+        <canvas id="c1"></canvas>
+        <div id="mask" class="mask">
+            <img src="loading.gif"/>
+        </div>
+        <xmp>
+        canvas画半透明背景作为节点的背景图
+        </xmp>
+    </div>
+<script>
+var oc1 = document.getElementById("c1");
+if (typeof window.G_vmlCanvasManager!="undefined") { 
+    oc1=window.G_vmlCanvasManager.initElement(oc1);
+}
+var ogc = oc1.getContext("2d");
+ogc.beginPath();
+ogc.moveTo(10+0.5,50);
+ogc.lineTo(100.5,100);
+ogc.closePath();
+ogc.stroke();
+
+;(function(hex){
+    var ocanvas = document.createElement("canvas");
+    ocanvas=window.G_vmlCanvasManager.initElement(ocanvas);
+    var ogc = ocanvas.getContext("2d");
+    ocanvas.width = 10;
+    ocanvas.height = 10;
+    ogc.fillStyle = hex;
+    ogc.globalAlpha = 0.5;
+    ogc.fillRect(0,0,ocanvas.width,ocanvas.height);
+    //document.getElementById("mask").style["background-image"] = "url("+ocanvas.toDataURL()+")";
+})("#000");
+
+</script>
+</body>
+</html>

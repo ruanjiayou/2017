@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>test</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <style>
+        #center {padding:2rem;}
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p id="show">测试</p>
+        <div id="test"></div>
+        <table id="tableExcel" width="100%" border="1" cellspacing="0" cellpadding="0">  
+            <tr>  
+                <td colspan="5" align="center">html 表格导出道Excel</td>  
+            </tr>  
+            <tr>  
+                <td>列标题1</td>  
+                <td>列标题2</td>  
+                <td>类标题3</td>  
+                <td>列标题4</td>  
+                <td>列标题5</td>  
+            </tr>  
+            <tr>  
+                <td>aaa</td>  
+                <td>bbb</td>  
+                <td>ccc</td>  
+                <td>ddd</td>  
+                <td>eee</td>  
+            </tr>  
+            <tr>  
+                <td>AAA</td>  
+                <td>BBB</td>  
+                <td>CCC</td>  
+                <td>DDD</td>  
+                <td>EEE</td>  
+            </tr>  
+            <tr>  
+                <td>FFF</td>  
+                <td>GGG</td>  
+                <td>HHH</td>  
+                <td>III</td>  
+                <td>JJJ</td>  
+            </tr>  
+        </table> 
+        <input type="button" onclick="tableToExcel('tableExcel', 'test')" value="Export to Excel">
+    </div>
+<script>
+var tableToExcel = function(table, name) {
+    var uri = 'data:application/vnd.ms-excel;base64,',
+    template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+    , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+    if (!table.nodeType) table = document.getElementById(table)
+    var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+    window.location.href = uri + base64(format(template, ctx))
+};
+</script>
+</body>
+</html>

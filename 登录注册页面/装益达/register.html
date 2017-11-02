@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<title>注册</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/register.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-placeholder.js"></script>
+    <script src="js/validate.js"></script>
+</head>
+<body>
+    <form method="post" action="register.aspx" id="form1">
+        <div class="top_ad"></div>
+        <div class="center clearfix">
+            <div class="logo">
+                <a href="index.aspx"><img src="css/images/logo.png"></a>
+                <a href="register.aspx">用户注册</a>
+            </div>
+            <a class="back" href="index.aspx">返回首页</a>
+        </div>
+        <div class="main clearfix">
+            <div class="center">
+                <ul class="register_box">
+                    <li>
+                        <label>用户名</label>
+                        <div>
+                            <input id="userName" data-validate="{required:true,vtype:'string'}" type="text">
+                        </div>
+                    </li>
+                    <li>
+                        <label>手机号码</label>
+                        <div>
+                            <input id="phoneNumber" data-validate="{required:true,vtype:'phone'}" type="text">
+                        </div>
+                    </li>
+                    <li>
+                        <label>设置密码</label>
+                        <div>
+                            <input id="psw" data-validate="{required:true,vtype:'char',maxlength:18,minlength:6}" type="password">
+                        </div>
+                    </li>
+                    <li>
+                        <label>确认密码</label>
+                        <div>
+                            <input id="pswConfirm" data-validate="{equlto:'#psw',vtype:'equlto'}" type="password">
+                        </div>
+                    </li>
+                    <li>
+                        <label>短信验证码</label>
+                        <div class="verification_code">
+                            <input id="code" data-validate="{required:true,vtype:'custom',reg:'^[a-zA-Z0-9]{6}$'}" type="text">
+                            <label id="GetVerrifyCode">获取验证码</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="protocol clearfix">
+                            <input id="agreeProtocol" type="checkbox">
+                            <a href="javascript:;">我已阅读并同意《小采购的用户注册协议》</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <label class="register_btn">注&nbsp;&nbsp;&nbsp;册</label>
+                        </div>
+                    </li>
+                </ul>
+                <div class="login_box">
+                    <p>我已有账号，<a href="login.aspx">请登录</a>。</p>
+                    <div class="QR_box">
+                        <img src="css/images/QR.png">
+                        <span>微信扫一扫，快速登录。</span>
+                    </div>
+                    <div class="coop_count_box">
+                        <p>使用合作账号登录：</p>
+                        <ul>
+                            <li><a class="icon_qq" href="#">QQ</a></li>
+                            <li><a class="icon_weibo" href="#">微博</a></li>
+                            <li><a class="icon_alipay" href="#">支付宝</a></li>
+                            <li><a class="icon_taobao" href="#">淘宝</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="mask hide">
+        <div class="mask_bg"></div>
+        <div class="main" style="background:url(css/images/loading2.gif) center center no-repeat;"></div>
+        <!-- <div class="main" style="background:url(css/images/loading2.gif) center center no-repeat;">
+            <span>登录中...</span>
+            <div>
+                <img src="css/images/loading2.gif" style="width: 50px;height:50px;float: left;margin-left: -60px;margin-top: -15px;"/>
+                <p style="text-indent:0;">登录中...</p>
+            </div>
+            
+        </div> -->
+    </div>
+<script>
+    //短信验证码倒计时
+    var CodeBtn = document.getElementById("GetVerrifyCode");
+    CodeBtn.timer = null;
+    CodeBtn.seconds = 60;
+    CodeBtn.onclick = function () {
+        if (this.seconds != 60) return;
+        this.timer = setInterval(function () {
+            CodeBtn.seconds--;
+            if (CodeBtn.seconds == 0) {
+                clearInterval(CodeBtn.timer);
+                CodeBtn.timer = null;
+                CodeBtn.seconds = 60;
+                CodeBtn.innerHTML = "已失效，请重新获取";
+                return;
+            }
+            CodeBtn.innerHTML = CodeBtn.seconds + "秒后重新发送";
+        }, 1000);
+    };
+
+    var formValidate = new FormValidate();
+    formValidate.Add("reg", ["#userName", "#phoneNumber", "#psw", "#pswConfirm", "#code"]);
+    $(".register_btn").click(function () {
+        if (formValidate.Validate("reg")) {
+            console.log($("#agreeProtocol").get(0).checked);
+            if ($("#agreeProtocol").get(0).checked == false) {
+                $("#agreeProtocol").parent().css("border", "1px solid red");
+                return;
+            } else {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "ajax/UserService.asmx/UserRegister",
+                    dataType: "json",
+                    data: "{ phone:'" + $("#phoneNumber").val() + "', pwd:'" + $("#psw").val() + "'}",
+                    beforeSend: function (XMLHttpRequest) { },
+                    success: function (data) {
+                        if (data.d == "accept") {
+                            window.location.href = "login.aspx";
+                        } else if (data.d == "reject") {
+                            alert("系统出错啦！");
+                        } else if (data.d == "exist") {
+                            alert("该手机号码已经注册过啦！");
+                        }
+                    },
+                    complete: function (XMLHttpRequest, textStatus) { },
+                    error: function () { }
+                });
+            }
+        }
+    });
+
+    $("#agreeProtocol").click(function () {
+        if (this.checked) {
+            this.parentNode.style = "";
+        }
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+/*
+Utility mixins 混合类工具
+作者：阮家友
+时间：2017-3-28 21:49:19
+说明：min-width不能放在.container上 放body上较好 加上overflow-x: hidden;解决负margin的问题
+
+*/
+/*
+作者：阮家友
+时间：2017-5-17 15:41:06
+说明：mixins混合自身不输出样式
+      2017-5-24 09:45:30 不再提供IE8的圆角属性支持。爱要不要。
+*/
+/*
+作者：阮家友
+时间：2017-5-19 14:03:46
+说明：less变量文件
+*/
+/*
+  说明 clearfix进化史中的太多麻烦
+  改用bootstrap中的写法
+  .clearfix:before, .clearfix:after { display: block; height: 0; clear: both; content: ""; font-size: 0; visibility: hidden; }
+   IE7不支持:before :after 
+  .clearfix { *zoom: 1; } 
+*/
+/* css3圆角 */
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/* @media width(max=800px) {} */
+/*BFC布局*/
+/*圣杯布局*/
+/*双飞翼布局*/
+/*fixed 上左右下布局*/
+/*栅格布局*/
+[role="row"]{
+    position: relative;
+}
+[role="row"]:before, [role="row"]:after{
+    display: table;
+
+    content: " ";
+}
+[role="row"]:after{
+    clear: both;
+}
+[class|="col"]{
+    position: relative;
+
+    float: left;
+
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    min-height: 1px;
+}
+.col-1{
+    width: 8.33333333%;
+}
+.col-offset-1{
+    margin-left: 8.33333333%;
+}
+.col-2{
+    width: 16.66666667%;
+}
+.col-offset-2{
+    margin-left: 16.66666667%;
+}
+.col-3{
+    width: 25%;
+}
+.col-offset-3{
+    margin-left: 25%;
+}
+.col-4{
+    width: 33.33333333%;
+}
+.col-offset-4{
+    margin-left: 33.33333333%;
+}
+.col-5{
+    width: 41.66666667%;
+}
+.col-offset-5{
+    margin-left: 41.66666667%;
+}
+.col-6{
+    width: 50%;
+}
+.col-offset-6{
+    margin-left: 50%;
+}
+.col-7{
+    width: 58.33333333%;
+}
+.col-offset-7{
+    margin-left: 58.33333333%;
+}
+.col-8{
+    width: 66.66666667%;
+}
+.col-offset-8{
+    margin-left: 66.66666667%;
+}
+.col-9{
+    width: 75%;
+}
+.col-offset-9{
+    margin-left: 75%;
+}
+.col-10{
+    width: 83.33333333%;
+}
+.col-offset-10{
+    margin-left: 83.33333333%;
+}
+.col-11{
+    width: 91.66666667%;
+}
+.col-offset-11{
+    margin-left: 91.66666667%;
+}
+.offset-20{
+    margin-right: -10px;
+    margin-left: -10px;
+}
+.offset-20> div> div{
+    display: block;
+
+    min-height: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}

@@ -1,0 +1,42 @@
+2017-1-2 23:33:07
+    能做到垂直居中了！！！
+2017-1-12 09:43:47
+    不考虑IE7 
+2017-3-15 09:04:03
+    loading效果方案： 动图      gif    优势,简单方便、可做背景;劣势,有白边毛边
+                                canvas 优势,效果好,可控性好;劣势,
+                                h5css3 
+                      垂直定位  百分比+负边距
+                                table-cell+hack
+2017-3-15 16:46:34
+    巨复杂 loading 垂直居中拆开成两个文件夹了~ 这里的删除！
+2017-8-6 15:47:01
+    重新设计 用于容器的loading 按钮之类的应该button组件自身带loading中间状态
+    参考 https://segmentfault.com/a/1190000005887888
+         http://www.jq22.com/jquery-info1966
+    使用方式：
+    $(element).loading(json)
+    {
+        text:"",        //加载文字，默认值：加载中...
+        icon:"",        //加载图标，默认值：一个小型的base64的gif图片
+        html:false,     //设置加载内容是否是html格式，默认值是false
+        content:"",     //忽略icon和text的值，直接在加载框中显示此值
+        mask:true,      //是否显示遮罩效果，默认显示
+        delay: 2500,    //回调延时 0 不延时
+        timeout: 5000,  //设置超时
+        fadeOut: true,   //渐隐
+        callback: function(){}//回调
+    }
+    true/false 取消loading()
+    
+div.bg *.mask
+    div.box
+        img
+        txt
+场景
+1.登录页 loading效果 
+2.列表页 ajax的loading效果
+3.对话框 提交中loading+fadeIn效果
+4.330702198304150416
+2017-8-10 14:10:36
+    完成

@@ -1,0 +1,19 @@
+﻿.anti-select { -moz-user-select: none; /*火狐*/-webkit-user-select: none; /*webkit浏览器*/-ms-user-select: none; /*IE10*/-khtml-user-select: none; /*早期浏览器*/user-select: none; }
+.ime-disabled { ime-mode: disabled; }
+xmp { display: block; }
+/* input加减部分 */
+.productNumberBox > label, .productNumberBox > input { float: left; display: block; width: 30px; height: 30px; line-height: 30px; text-align: center; border: 1px solid #ccc; }
+.productNumberBox > label {  background-color: #dedede; }
+.productNumberBox > input { width: 50px; border-left-width: 0; border-right-width: 0;}
+.disabled { cursor: not-allowed; color: #aaa; }
+/* 搜索框和按钮部分 */
+.search_box { position: relative; margin-top: 5px; padding-right:100px; background-color: #f85f02; overflow: hidden; }
+    .search_box input { box-sizing: border-box; width: 100%; border: 2px solid #F85F02; padding: 8px; background-color: #fff; outline: 0 none; }
+    .search_box label { position: absolute; right: 0; top: 0; *top: 1px; display: block; width: 100px; height: 36px; line-height: 36px;; color: #fff; cursor: pointer; font-size: 20px; text-align: center; letter-spacing: 14px; text-indent: 14px;  -moz-user-select: none; /*火狐*/-webkit-user-select: none; /*webkit浏览器*/-ms-user-select: none; /*IE10*/-khtml-user-select: none; /*早期浏览器*/user-select: none; }
+/* 图标后缀部分 */
+.input_box { position: relative; display: inline-block; }
+    .input_box input { border: 1px solid #ccc; padding: 4px 20px 4px 4px; }
+    .input_box label { position: absolute; top: 50%; right: 3px; display: inline-block; width: 20px; height: 20px; margin-top: -10px; background-position: center center; background-repeat: no-repeat; }
+    .input_box label.icon-time { background-image: url(images/icon-time.png) }
+    .input_box label.icon-search { background-image: url(images/icon-search.png) }
+    .input_box label.icon-close { background-image: url(images/icon-close.png); visibility: hidden; }

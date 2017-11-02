@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="Author" content="阮家友">
+    <meta name="Keywords" content="HTML,model,test">
+    <meta name="Description" content="special effect">
+    <meta name="time" content="2016-3-23 19:00:08">
+    <style type="text/css">
+        html, body{font-size:14px; margin:0px; padding:0px; }
+        li {list-style:none; }
+        img {border:0px; }
+        a {text-decoration:none; }
+        a:link{color:#000000; }
+        a:visited{color:#000000; }
+        a:hover{color:#de7916; }
+        .clear {clear:both; }        
+        #center {width:800px; margin:0 auto; padding:20px; }
+        #fenye {padding-top:40px;min-width:50%;margin:0 auto;}
+        #fenye .disable {border-color:#aaaaaa;}
+        .disable a:hover, .disable a:link, .disable a:visited {color:#aaaaaa;}
+        #fenye li{float:left;margin:0 5px;border:1px solid #333;min-width:32px;height:30px;line-height:30px;}
+        #fenye .noborder {border:none;}
+        #fenye input {width:30px;border:1px solid #333;}
+        .curr {background-color:#c00;}
+        #fenye a {display:block;padding:0px 5px;text-align:center;}
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p>new showPage的方式将 变量挂在函数上</p>
+        <ul id="fenye"></ul>
+    </div>
+<script type="text/javascript">
+function MergePage(tagID,url){
+    this.box = document.getElementById(tagID);
+    //记录总数
+    this.count = 0;
+    //每页篇数
+    this.itemsPerPage = 0;
+    //总页数
+    this.pages = 0;
+    this.currentPage = 0;
+    
+    this.url = url;
+    this.ajax = ajax;
+    this.show = function(msg){
+        this.box.innerHTML = "";
+    };
+    this.require = function(pageNO){
+        this.ajax({"url":url+"?pageno="+pageNO},function(msg){this.show(msg);});
+    };
+};
+var sp = {
+    items:null,//记录总数
+    NumPerPage:20,//每页篇数
+    PagePerPage:10,//每页分页中 页数
+    Pages:null,//总页数
+    StartPage:1,
+    CurrentPage:1,
+    node:null,//操作的节点
+    Init:null,//初始化函数
+    deal:function(e){//事件代理函数
+        
+    },
+    updata:function(){//更新数据
+        
+    }
+};
+sp.Init = function(json){
+    for(var k in json){
+        sp[k] = json[k];
+    }
+}
+</script>
+</body>
+</html>

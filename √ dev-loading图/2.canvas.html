@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>test</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/core.js"></script>
+    <!--[if lt IE 9]>
+        <script src="../js/excanvas.js"></script>
+    <![endif]-->
+    <style>
+        #center {padding:2rem;}
+        .mask { position: fixed; left: 0; top: 0; width: 100%; height: 100%; }
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p id="show">测试--IE8失败</p>
+        <div id="mask" class="mask">
+            <div id="bg">xxx</div>
+        </div>
+        <xmp>
+        canvas画半透明背景作为节点的背景图
+        无奈IE8不支持~
+        </xmp>
+    </div>
+<script>
+window.onload = function(){
+    ;(function(hex){
+        var ocanvas = document.createElement("canvas");
+        var ogc = ocanvas.getContext("2d");
+        ocanvas.width = 10;
+        ocanvas.height = 10;
+        ogc.fillStyle = hex;
+        ogc.globalAlpha = 0.5;
+        ogc.fillRect(0,0,ocanvas.width,ocanvas.height);
+        document.getElementById("mask").style["background-image"] = "url("+ocanvas.toDataURL()+")";
+        console.log(ocanvas.toDataURL());
+    })("#000");
+}
+new CSheet({
+    ".loading-mask": "position:fixed;top:0;left:0;width:100%;height:100%;text-align:center;",
+    ".loading-bg": "position:absolute;left:0;top:0;width:100%;height:100%;background:#000;opacity:0.6;filter:alpha(opacity=90);",
+    ".loading-mask > div": "display: line-block;"
+});
+;(function(win){
+    var oMask = NewNode("div",{"class":"loading-mask"});
+    var oCanvas = NewNode("canvas",{"width": "100", "height": "100"});
+    oMask.appendChild(NewNode("div",{"class":"loading-bg"}));
+    oMask.appendChild(oCanvas);
+    var obj = {
+        Node:oCanvas,
+        GC: oCanvas.getContext("2d"),
+        timer:'',
+        bContinue:false,
+        fun:null,
+        mData: {},
+        clear:function(){this.GC.clearRect(0,0,this.Node.width,this.Node.height);},
+        start:function(){
+            var oThis = this;
+            if(oThis.timer)
+            {
+                oThis.stop();
+            }
+            oThis.bContinue = true;
+            var loop = function()
+            {
+                oThis.fun(oThis);
+                if(oThis.bContinue)
+                {
+                    oThis.timer = setTimeout(loop,10);
+                }
+            }
+            loop();
+        },
+        stop:function(){clearTimeout(this.timer);this.bContinue = false;}
+    }
+    obj.mData.degree = 0;
+    obj.mData.position = {x:50,y:50};
+    obj.fun = function(){
+        var tempR = 0;
+        this.clear();
+        this.GC.fillStyle="#83dbff";
+        this.GC.save();
+        this.GC.translate(this.mData.position.x,this.mData.position.y);
+        this.GC.rotate(Math.PI*this.mData.degree/180);
+        for(var i=0;i<8;i++)
+        {
+            this.GC.rotate(Math.PI/4);
+            this.GC.beginPath();
+            this.GC.arc(20,0,2+i/2,Math.PI*2,false);
+            this.GC.moveTo(0,-35);
+            this.GC.lineTo(0,35);
+            this.GC.fill();
+            this.GC.closePath();
+        }
+        obj.GC.restore();
+        this.mData.degree+=2;
+        if(this.mData.degree>=360) this.mData.degree = 0;
+    }
+    window.ShowLoading = function(fn){
+        win.document.body.appendChild(oMask);
+        obj.start();
+        if(fn) fn.call(oMask);
+    }
+    window.HideLoading = function(fn){
+        win.document.body.appendChild(oMask);
+        obj.stop();
+        if(fn) fn.call(oMask);
+    }
+})(window);
+window.ShowLoading(function(){
+    var odiv = NewNode("div",{"class":"main"});
+    odiv.innerHTML = "<p>测试</p><div><p>测试</p><p>测试</p></div>";
+    $(this).append(odiv);
+});
+</script>
+</body>
+</html>

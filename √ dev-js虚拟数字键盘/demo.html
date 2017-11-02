@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<title>test</title>
+    <script src="jquery-1.7.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/core.keyboard.js"></script>
+    <style>
+        #center {padding:2rem;}
+    </style>
+</head>
+<body>
+    <div id="center">
+        $(function(){});IE7/8支持已修复
+        <p id="show">点击input两次会出问题使用initKeboard变量解决 <br/>点击input和键盘之外的document关闭KeyBoard 使用closed变量解决</p>
+        <p>input在底部 虚拟键盘要显示在上方已解决 但页面有滚动条的话有问题</p>
+        <p>2017-1-11 17:38:36 新思路：显示虚拟键盘时将键盘插入到input后面 隐藏的时候将键盘remove掉 这个要用闭包</p>
+        <input id="in1" type="text" name="text1" class="shuru input_cur" onclick="top.KeyBoard.Input = document.getElementById('in1');top.KeyBoard.Show();" >
+        <div id="test" class="soft_keyboard"></div>
+        
+    </div>
+<script>
+//KeyBoard.Show();
+</script>
+</body>
+</html>

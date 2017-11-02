@@ -1,0 +1,16 @@
+﻿/*清零*/
+a { text-decoration:none; }
+img, input { border:none; border:1px solid none; }
+li { list-style:none; }
+body, div, dl, dt, dd, ul, li, h1, h2, h3, pre, code, form, fieldset, legend, input, button, textarea, blockquote, p { margin: 0; padding: 0; }
+
+html,body,#form1 { background:#f0f0f0; height:100%;}
+#hd_bg { width: 100%; height:40%; background:#ffffff; }
+#login { width:477px; height:308px; background:url(images/bg_login.png); margin:-118px auto; position:relative; }
+    #login input { width:188px; height:30px; line-height:30px; border:1px solid #d4d4d4; padding-left:5px; font-size:12px; }
+    #login .user { position:absolute; top:163px; left:99px; }
+    #login .psw { position:absolute; top:214px; left:99px; }
+    #login .f_user { position:absolute; top:163px; left:152px; }
+    #login .f_psw { position:absolute; top:214px; left:152px; }
+    #login a { display:block; width:94px; height:84px; position:absolute; top:163px; right:0; background:url(images/button01_login.png); }
+        #login a:hover { background:url(images/button02_login.png); }

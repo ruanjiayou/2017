@@ -1,0 +1,310 @@
+/**
+作者：阮家友
+时间：2017-3-26 13:11:20
+说明：
+    button.css的less形式
+    .btn 状态类型/样式类型/尺寸类型
+    2017-3-26 14:42:12 完成
+    2017-5-17 15:23:04 增加group bar样式
+    2017-5-24 09:30:09 IE8 圆角与背景色不可兼得
+**/
+/*
+作者：阮家友
+时间：2017-5-17 15:41:06
+说明：mixins混合自身不输出样式
+      2017-5-24 09:45:30 不再提供IE8的圆角属性支持。爱要不要。
+*/
+/*
+作者：阮家友
+时间：2017-5-19 14:03:46
+说明：less变量文件
+*/
+/*
+  说明 clearfix进化史中的太多麻烦
+  改用bootstrap中的写法
+  .clearfix:before, .clearfix:after { display: block; height: 0; clear: both; content: ""; font-size: 0; visibility: hidden; }
+   IE7不支持:before :after 
+  .clearfix { *zoom: 1; } 
+*/
+/* css3圆角 */
+.btn-group,
+.btn-group-vertical {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+.btn-group > .btn,
+.btn-group-vertical > .btn {
+  position: relative;
+  float: left;
+}
+.btn-group > .btn:hover,
+.btn-group-vertical > .btn:hover,
+.btn-group > .btn:focus,
+.btn-group-vertical > .btn:focus,
+.btn-group > .btn:active,
+.btn-group-vertical > .btn:active,
+.btn-group > .btn.active,
+.btn-group-vertical > .btn.active {
+  z-index: 2;
+}
+.btn-group .btn + .btn,
+.btn-group .btn + .btn-group,
+.btn-group .btn-group + .btn,
+.btn-group .btn-group + .btn-group {
+  margin-left: -1px;
+}
+.btn-toolbar {
+  margin-left: -5px;
+}
+.btn-toolbar:before,
+.btn-toolbar:after {
+  content: " ";
+  display: table;
+}
+.btn-toolbar:after {
+  clear: both;
+}
+.btn-toolbar .btn,
+.btn-toolbar .btn-group,
+.btn-toolbar .input-group {
+  float: left;
+}
+.btn-toolbar > .btn,
+.btn-toolbar > .btn-group,
+.btn-toolbar > .input-group {
+  margin-left: 5px;
+}
+.btn-group > .btn {
+  border-radius: 0;
+}
+.btn-group > .btn:first-child {
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.btn-group > .btn:last-child {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.btn-group > .btn.last-child {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.btn-group > .btn-group {
+  float: left;
+}
+.btn-group > .btn-group > .btn {
+  border-radius: 0;
+}
+.btn-group > .btn-group > .last-child {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+a.btn {
+  text-decoration: none;
+}
+.btn {
+  display: inline-block;
+  *display: inline;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  line-height: 35px;
+  padding: 0 18px;
+  text-align: center;
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+  *zoom: 1;
+  *behavior: url(/css/ie-css3.htc);
+  /*样式类型：link border disabled*/
+  /* 边框样式：*/
+  /*状态类型：红、黄、蓝、绿*/
+}
+.btn:focus,
+.btn.active,
+.btn:hover {
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+  background-color: #f0f0f0;
+}
+.btn.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  color: #333;
+  background-color: #f0f0f0;
+}
+.btn.block {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+.btn.link {
+  line-height: 1.5;
+  padding: 0;
+  border-width: 0;
+  background-color: transparent;
+  background-position: left center;
+  background-repeat: no-repeat;
+  color: #333;
+  behavior: initial;
+}
+.btn.link + .link {
+  margin-left: 7px;
+}
+.btn.border.disabled,
+.btn.border:hover,
+.btn.border:focus {
+  background-color: #f0f0f0;
+}
+.btn.btn-success {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+  color: #fff;
+}
+.btn.btn-success:focus,
+.btn.btn-success:hover,
+.btn.btn-success.active {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+  color: #fff;
+}
+.btn.btn-warning {
+  background-color: #f0ad4e;
+  border-color: #f0ad4e;
+  color: #fff;
+}
+.btn.btn-warning:focus,
+.btn.btn-warning:hover,
+.btn.btn-warning.active {
+  background-color: #f0ad4e;
+  border-color: #f0ad4e;
+  color: #fff;
+}
+.btn.btn-danger {
+  background-color: #d9534f;
+  border-color: #d9534f;
+  color: #fff;
+}
+.btn.btn-danger:focus,
+.btn.btn-danger:hover,
+.btn.btn-danger.active {
+  background-color: #d9534f;
+  border-color: #d9534f;
+  color: #fff;
+}
+.btn.btn-info {
+  background-color: #0F88EB;
+  border-color: #0F88EB;
+  color: #fff;
+}
+.btn.btn-info:focus,
+.btn.btn-info:hover,
+.btn.btn-info.active {
+  background-color: #0F88EB;
+  border-color: #0F88EB;
+  color: #fff;
+}
+.btn.border {
+  background-color: #fff;
+}
+.btn.border.btn-success {
+  color: #5cb85c;
+}
+.btn.border.btn-success:hover,
+.btn.border.btn-success:focus {
+  color: #fff;
+}
+.btn.border.btn-warning {
+  color: #f0ad4e;
+}
+.btn.border.btn-warning:hover,
+.btn.border.btn-warning:focus {
+  color: #fff;
+}
+.btn.border.btn-danger {
+  color: #d9534f;
+}
+.btn.border.btn-danger:hover,
+.btn.border.btn-danger:focus {
+  color: #fff;
+}
+.btn.border.btn-info {
+  color: #0F88EB;
+}
+.btn.border.btn-info:hover,
+.btn.border.btn-info:focus {
+  color: #fff;
+}
+/* 尺寸类型：按钮常用3种尺寸 */
+.btn-sm {
+  height: auto;
+  line-height: 1;
+  padding: 4.62px 9.24px;
+}
+.btn-md {
+  height: auto;
+  line-height: 1;
+  padding: 9.24px 21px;
+  font-size: 18.62px;
+}
+.btn-lg {
+  height: auto;
+  line-height: 1;
+  padding: 11.55px 28px;
+  font-size: 23.24px;
+}
+/* 表单常用的按钮 */
+.add,
+.back,
+.query,
+.reset,
+.save,
+.cancel {
+  display: inline-block;
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.add,
+.query,
+.back,
+.save {
+  border-width: 0;
+  background-color: #0F88EB;
+  color: #fff;
+}
+.add:hover,
+.query:hover,
+.back:hover,
+.save:hover,
+.add:active,
+.query:active,
+.back:active,
+.save:active {
+  background-color: #0F88EB;
+}
+.reset,
+.cancel {
+  background-color: #ccc;
+  color: #333;
+  border-width: 0;
+}
+.reset:hover,
+.cancel:hover {
+  background-color: #ccc;
+}
+.btn.btn-add-cross {
+  padding: 0 10px;
+  border-width: 0;
+  background: #fff url(images/icon-add.png) center center no-repeat;
+}
+.btn.link.delete {
+  background-image: url(images/btn-delete.png);
+  text-indent: 21px;
+}
+.btn.link.edit {
+  background-image: url(images/btn-edit.png);
+  text-indent: 21px;
+}

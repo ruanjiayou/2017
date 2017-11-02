@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<title>test</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link href="plugin/css/raythonsoft.dialog.css" rel="stylesheet" />
+    <script src="jquery.js"></script>
+    <script src="plugin/raythonsoft.dialog.1.0.js"></script>
+    <script src="plugin/raythonsoft.dialog.crud.1.0.js"></script>
+    <script>
+        var dialog = new $rDialogCRUD(this/*this parent top*/, "编辑供应"/*标题*/, "../dev-公司表单验证/demo.html"/*目标网页url*/, 620, 500,/*宽高*/ "../../service/SupplyService.asmx/DeleteSupply"/*service接口*/);
+    </script>
+    <style>
+        #center {padding:2rem;}
+        
+        .add { display: inline-block; padding: 5px 10px; border-radius: 4px; background-color: #f96; color: #fff; }
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p id="show">dialog.1.0.js(缺少会造成$_showdialog错误)和crud.1.0.js都要 前者(还有css)放在父页面中后者放在子页面(如iframe)中</p>
+        <div id="test">
+            <label class="add" onclick="dialog.addTarget();">打开</label>
+            <a href="javascript:;" onclick="dialog.targetName='ces';dialog.addTarget();">测试修改标题</a>
+            <xmp>
+            父页面中
+            <link href="plugin/css/raythonsoft.dialog.css" rel="stylesheet" />
+            <script src="jquery.js"></script>
+            <script src="plugin/raythonsoft.dialog.1.0.js"></script>
+            <script src="plugin/raythonsoft.dialog.crud.1.0.js"></script>
+            <script>
+                var dialog = new $rDialogCRUD(this/*this parent top*/, "编辑供应"/*标题*/, "../dev-公司表单验证/demo.html"/*目标网页url*/, 620, 500,/*宽高*/ "../../service/SupplyService.asmx/DeleteSupply"/*service接口*/);
+            </script>
+            <label class="add" onclick="dialog.addTarget();">打开对话框</label>
+            <a class="edit" href="javascript:;" onclick="dialog.editTarget('id...')">修改</a>
+            <a class="edit" href="javascript:;" onclick="dialog.delTarget('id...'),delFn">删除</a>
+            子页面(iframe)中关闭对话框按钮
+            <a href="javascript:;" onclick="parent.$r_showDialog('测试修改标题','../dev-公司表单验证/demo.html',620,500)">测试修改标题</a>
+            <label class="btn cancle" onclick="if(parent!=window)parent.$r_hideDialog();">取消</label>
+            </xmp>
+        </div>
+    </div>
+<script>
+
+</script>
+</body>
+</html>

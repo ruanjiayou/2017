@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>test</title>
+    <script src="toast.js"></script>
+    <style>
+        #center {padding:2rem;}
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p id="show">测试</p>
+        <button id="btn">按钮</button>
+    </div>
+<script>
+document.getElementById("btn").onclick = function(){
+    ShowToast("测试toast",function(){
+        setTimeout(function () {
+            console.log("toast end!");
+        }, 2000);
+    });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+/**
+作者：阮家友
+时间：2017-4-12 14:58:09
+说明：进度条样式
+
+**/
+/*
+作者：阮家友
+时间：2017-5-17 15:41:06
+说明：mixins混合自身不输出样式
+      2017-5-24 09:45:30 不再提供IE8的圆角属性支持。爱要不要。
+*/
+/*
+作者：阮家友
+时间：2017-5-19 14:03:46
+说明：less变量文件
+*/
+/*
+  说明 clearfix进化史中的太多麻烦
+  改用bootstrap中的写法
+  .clearfix:before, .clearfix:after { display: block; height: 0; clear: both; content: ""; font-size: 0; visibility: hidden; }
+   IE7不支持:before :after 
+  .clearfix { *zoom: 1; } 
+*/
+/* css3圆角 */
+[data-progress]{
+    position: relative;
+
+    margin: 1rem 0;
+
+    background-color: #f0f0f0;
+
+    behavior: url(/ie-css3.htc);
+}
+[data-progress]> [role="bar"]{
+    width: 0;
+    min-height: 2px;
+
+    text-align: right;
+}
+[data-progress~="vertical"]{
+    display: inline-block;
+
+    width: 7px;
+    height: 70px;
+}
+[data-progress~="vertical"]> [role="bar"]{
+    position: absolute;
+
+    width: 100%;
+}
+[data-progress~="radius"], [data-progress~="radius"]> [role="bar"]{
+    -webkit-border-radius: 140px;
+            border-radius: 140px;
+
+    behavior: url(/ie-css3.htc);
+}
+[data-progress~="inner"]> [role="bar"]{
+    padding: 0 9.24px;
+
+    color: #333;
+}
+[data-progress~="outer"][data-progress~="txt"]{
+    margin-right: 42px;
+}
+[data-progress~="outer"]> [role="bar"]{
+    min-height: 7px;
+}
+[data-progress~="outer"] [role="txt"]{
+    font-size: 14px;
+    line-height: 14px;
+
+    position: absolute;
+    top: -50%;
+    left: 100%;
+
+    width: 42px;
+
+    text-align: center;
+}
+[data-progress~="red"]> [role="bar"]{
+    background-color: #ff4949;
+}
+[data-progress~="red"]{
+    color: #ff4949;
+}
+[data-progress~="green"]> [role="bar"]{
+    background-color: #13ce66;
+}
+[data-progress~="green"]{
+    color: #13ce66;
+}
+[data-progress~="blue"]> [role="bar"]{
+    background-color: #20a0ff;
+}
+[data-progress~="blue"]{
+    color: #20a0ff;
+}

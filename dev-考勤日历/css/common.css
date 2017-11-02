@@ -1,0 +1,25 @@
+﻿/* 1. rem单位计算：1242px的设计稿，默认字体大小为30px，即1rem */
+/* 2. 边框样式：除了考勤页，其他都是 1px solid #e8e8e8 */
+/* 3. 边距：区域与屏幕周边、文字与边框之间都是1rem的距离 */
+html { color: #4c4c4c; background-color: #ebebeb; }
+
+/* 字体：只有两种大小，按钮和标题都是大号的 */
+.font_title { font-size: 1.33rem; }
+
+/* 背景色3种 */
+.bgc_orange { background-color: #ff5a34; }
+.bgc_orange_light { background-color: #ff9e88; }
+.bgc_white { background-color: #fff; }
+.bgc_gray { background-color: #ebebeb; }
+
+/*文字颜色5种*/
+.color_orange { color: #ff5a34; }
+.color_orange_light { color: #ff9e88; }
+.color_white { color: #fff; }
+.color_gray { color: #aaa; }
+.color_green { color: #00bd70; }
+
+/*固定底部样式*/
+.fix_bottom_logo { padding-bottom: 7.125rem; }
+.fix_bottom_logo .logo_bottom { position: absolute; left: 0; right: 0; bottom: 2.3rem; text-align: center; }
+.fix_bottom_logo .logo_bottom img { height: 4.825rem; }

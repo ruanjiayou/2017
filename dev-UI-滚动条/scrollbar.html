@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>滚动条</title>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/core.scrollbar.js"></script>
+    <style>
+        #center { width: 50%; padding:2rem;}
+        #div1 { height: 300px; background-color: yellow; overflow: hidden; }
+        [role='slider-window'] { position: relative; padding-right: 16px; overflow: hidden; }
+        [role='slider-window'] > [role='slider'] { position: absolute; right: 0; top: 0; width: 16px; height: 100%; }
+        [role='slider'] { position: relative; background-color: #ccc; -moz-user-select: none; }
+        [role='slider'] [role='bar'] { position: absolute; width: 100%; left: 0; min-height: 10px; background-color: red; cursor: pointer; }
+        
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p>水平滚动条</p>
+        <div role="slider"></div>
+        <p>垂直滚动条</p>
+        <div id="div1">
+            ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字
+            ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字ces测试滚动条后很有很多问题在文字end
+        </div>
+        <br/>
+        <p>水平scroll bar事件</p>
+        <div role="slider">
+            <div role="bar"></div>
+        </div>
+        <p>垂直scroll bar事件</p>
+        <div role="slider vertical" style="width: 20px;height:200px">
+            <div role="bar"></div>
+        </div>
+    </div>
+    
+<script>
+$(function(){
+    $("#div1").scroll({
+        onScroll: function(percent){
+            //console.log(percent)
+        }
+    });
+});
+</script>
+</body>
+</html>

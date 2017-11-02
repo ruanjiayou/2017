@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="Author" content="阮家友">
+    <meta name="Keywords" content="HTML,model,test">
+    <meta name="Description" content="special effect">
+    <meta name="time" content="2015-9-27 10:41:48">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" href="http://127.0.0.1:2017/css/common.css"/>
+    <link rel="stylesheet" href="http://127.0.0.1:2017/css/common.layout.css"/>
+    <link rel="stylesheet" href="http://127.0.0.1:2017/css/common.button.css"/>
+    <script src="http://127.0.0.1:2017/js/jquery.js"></script>
+    <script src="http://127.0.0.1:2017/js/core.js"></script>
+    <script src="http://127.0.0.1:2017/js/core.progress.js"></script>
+    <script src="../js/core.dialog.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="dialog-add-huxing">此处测试打开的iframe中预览image</div>
+    <label id="dlgiframeop" class="btn btn-info" onclick="dlgIframe.Open();">打开iframe</label>
+<script>
+//例子-iframe对话框
+var dlgIframe = Dialog({
+    title: "添加户型",
+    window: top,
+    Closed: function(){
+        console.log("close iframe");
+    },
+    size: {width:600,height:500},
+    url: "preview.html"
+});
+
+</script>
+</body>
+</html>

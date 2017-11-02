@@ -1,0 +1,43 @@
+﻿2017-2-16 10:28:53
+    改进地址联动选择：
+    默认方式使用
+    1.引入jQuery和CArea.js
+    2.HTML结构代码
+        <select id="s_sheng" name="sheng">
+            <option value="">请选择</option>
+        </select>
+        <select id="s_shi" name="shi">
+            <option value="">请选择</option>
+        </select>
+        <select id="s_qu" name="qu">
+            <option value="">请选择</option>
+        </select>
+    3.初始化
+        基本
+            <script>Area();</script>
+        传入参数(传入的id要与HTML结构代码中select的ID保持一致！)
+                 所有参数可选可不选(默认的省市区字符串肯定要同时存在，而且不要搞个不存在的地址作死！)
+        
+        <script>
+        Area({
+            shengId: "s1_sheng",
+            shiId: "s1_shi",
+            quId: "s1_qu",
+            defaultSheng: "湖北省",
+            defaultShi: "咸宁市",
+            defaultQu: "通山县",
+            callback: function(select,option){
+                console.log(select);
+                console.log(option);
+            }
+        });
+        </script>
+    4.API介绍
+        a). init()方法 初始化Area对象
+        b). SetOptions(select,arr)方法 传入select和字符串数组，清空select的options，然后将arr数组转化为option对象数组append到select下面
+        c). SetSelected(select, v)方法  
+    5.测试
+        360版本号8.1.1.238 内核版本45.0.2454.101    IE7/8/9 chrome 测试通过
+        Firefox 50.0测试通过
+2017-3-13 10:05:54
+    文件改名为core.area.js 移动到js文件夹下

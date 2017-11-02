@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>分页</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="Author" content="阮家友">
+    <meta name="Keywords" content="HTML,model,test">
+    <meta name="Description" content="special effect">
+    <meta name="time" content="2015-9-27 10:41:48">
+    <style type="text/css">
+        html,body{font-size:14px;margin:0px;padding:0px;}
+        li {list-style:none;}
+        img {border:0px;}
+        a {text-decoration:none;}
+        a:link{color:#333;}
+        a:visited{color:#333;}
+        a:hover{color:#de7916;}
+        .clear {clear:both;}
+        
+        #center {width:800px;margin:0 auto;padding:50px;}
+        #fenye {padding-top:200px;min-width:50%;margin:0 auto;}
+        #fenye li{float:left;margin:0 5px;border:1px solid #333;}
+        #fenye .noborder {border:none;}
+        #fenye input {width:30px;border:1px solid #333;}
+        .curr {background-color:#c00;}
+        .curr a {margin:0 5px;}
+        #fenye a {display:block;padding:2px 5px;text-align:center;}
+    </style>
+</head>
+<body>
+    <div id="center">
+        <ul id="fenye"></ul>
+    </div>
+<script type="text/javascript">
+//记录总数
+var items = 612;
+//每页篇数
+var NumPerPage = 20;
+//每页的分页长度
+var PagePerPage = 10;
+//
+var Pages = Math.ceil(items/NumPerPage);
+//
+var StartPage = 1;
+//
+var CurrentPage = 1;
+var fenye = document.getElementById("fenye");
+
+function showpage(s,c){
+    var pagelist="";
+    s=parseInt(s);
+    if(s!=1){
+        pagelist="<li><a href='javascript:void(0);'>首页</a></li><li><a href='javascript:void(0);'>上一页</a></li>";
+    }
+    for(var i=s,j=0;i<Pages&&j<PagePerPage;i++,j++){
+        if(i==c){
+            pagelist+="<li class='curr'><a href='javascript:void(0);' "+"pageid='"+i+"' "+"index='"+j+"'>"+i+"</a></li>";
+        }
+        else{
+            pagelist+="<li><a href='javascript:void(0);' "+"pageid='"+i+"' "+"index='"+j+"'>"+i+"</a></li>";
+        }
+    }
+    if(s+PagePerPage<Pages){
+        pagelist=pagelist+"<li><a href='javascript:void(0);'>下一页</a></li><li><a href='javascript:void(0);'>尾页</a></li>";
+    }
+    fenye.innerHTML=pagelist+"<li class='noborder'><input id='goid' type='text' value=''/><button id='go'>go</button></li>";
+    //1.取消a标签的默认事件
+    var ops = fenye.getElementsByTagName("a");
+    for(var i=0;i<ops.length;i++){
+        ops[i].onmousedown = function (e) {
+            //页码
+            var pageid = this.getAttribute("pageid");
+            //列表位置
+            var index = parseInt(this.getAttribute("index"));
+            //数字页码
+            if(pageid!=null){// 
+                //console.log(pageid);
+                if(index!=0 && index!=9){//还是当前页
+                    showpage(StartPage,pageid);
+                }
+                else{//自动翻页
+                    if(0==index){
+                        if(StartPage-PagePerPage>=1){
+                            StartPage=StartPage - PagePerPage+1;
+                        }
+                        else{
+                            StartPage=1;
+                        }
+                        CurrentPage = pageid;
+                    }
+                    else{
+                        StartPage = CurrentPage = pageid;
+                    }
+                    showpage(StartPage,CurrentPage);
+                }
+            }
+            //文字翻页命令
+            else{//首页 上一页 下一页 尾页
+                //console.log(this.innerHTML);
+                var cmd = this.innerHTML;
+                switch(cmd){
+                    case "首页":
+                        StartPage = 1;
+                        CurrentPage = 1;
+                        showpage(StartPage,CurrentPage);
+                    break;
+                    case "上一页":
+                        if(StartPage-PagePerPage>=1){
+                            StartPage-=PagePerPage;
+                        }
+                        else{
+                            StartPage=1;
+                        }
+                        CurrentPage = StartPage;
+                        showpage(StartPage,CurrentPage);
+                    break;
+                    case "下一页":
+                        if(StartPage+PagePerPage<=Pages){
+                            StartPage+=PagePerPage;
+                        }
+                        else{
+                            StartPage=Pages-PagePerPage;
+                        }
+                        CurrentPage = StartPage;
+                        showpage(StartPage,CurrentPage);
+                    break;
+                    case "尾页":
+                        StartPage = Pages - PagePerPage;
+                        CurrentPage = Pages - PagePerPage;
+                        showpage(StartPage,CurrentPage);
+                    break;
+                    default:break;
+                }
+            }
+            //如果提供了事件对象，则这是一个非IE浏览器
+            if (e && e.preventDefault) {
+                //阻止默认浏览器动作(W3C) 
+                e.preventDefault();
+            }
+            else {
+                //IE中阻止函数器默认动作的方式 
+                window.event.returnValue = false;
+                return false;
+            }
+        }
+    }
+    var obtn = document.getElementById("go");
+    var oinput = document.getElementById("goid");
+    oinput.onkeydown = function(evt){
+        evt = (evt) ? evt : window.event;
+        if(evt.keyCode==13&&this.value!=""){
+            var page = parseInt(this.value);
+            if(page!=null&&page!=undefined&&page!=0){
+            if(page>Pages){
+                page=Pages;
+            }
+            if(page<1){
+                page=1;
+            }
+            StartPage = page;
+            CurrentPage = page;
+            showpage(StartPage,CurrentPage);
+        }
+        }
+    }
+    go.onclick = function(){
+        var page=parseInt(oinput.value);
+        console.log(page);
+        if(page!=null&&page!=undefined&&page!=0&&!isNaN(page)){
+            if(page>Pages){
+                page=Pages;
+            }
+            if(page<1){
+                page=1;
+            }
+            StartPage = page;
+            CurrentPage = page;
+            showpage(StartPage,CurrentPage);
+        }
+    }
+}
+showpage(1,1);
+</script>
+</body>
+</html>

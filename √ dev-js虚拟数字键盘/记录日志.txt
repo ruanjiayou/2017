@@ -1,0 +1,14 @@
+2017-1-9 21:27:25
+    无法监听input的oninput事件~~
+    解决办法：绑定了虚拟键盘的input的change事件都用MyChange方法实现并且挂在input节点上，虚拟键盘捕获的click事件中调用this.Input.MyChange()如果有的话~
+    发现chrome中无法修改CSSRuler创建的css样式
+2017-1-10 14:50:57
+    top+offsetHeight大于body client 显示到上面~~
+    回调函数的必要性:show之前的自定义位置调整和其他处理，close之后的处理
+2017-1-12 17:21:48
+    新思路 可能存在的问题是iframe中被遮住
+    show时 KeyBoard插入到input的后面 并且绝对定位  parentNode添加相对定位的类
+    hide时 移除
+2017-3-13 09:58:23
+    将Sheet和NewObject的删除了 使用core.js中的
+    js改名为 core.keyboard.js 移动到js文件夹下

@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>test</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <style>
+        #center {padding:2rem;}
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p id="show">测试</p>
+        <div id="test"></div>
+        <button id="daochu">导出</button>
+        <textarea rows="6" id="content">
+        姓名,学号,成绩
+        王三,103020120,98
+        张四,103020218,80
+        </textarea>
+        <p style="color: #3300ff;">1. 使用FileSaver.js保存</p><button id="saveBtn">保存Excel文件</button>
+        <table id="tableExcel" width="100%" border="1" cellspacing="0" cellpadding="0">  
+    <tr>  
+        <td colspan="5" align="center">html 表格导出道Excel</td>  
+    </tr>  
+    <tr>  
+        <td>列标题1</td>  
+        <td>列标题2</td>  
+        <td>类标题3</td>  
+        <td>列标题4</td>  
+        <td>列标题5</td>  
+    </tr>  
+    <tr>  
+        <td>aaa</td>  
+        <td>bbb</td>  
+        <td>ccc</td>  
+        <td>ddd</td>  
+        <td>eee</td>  
+    </tr>  
+    <tr>  
+        <td>AAA</td>  
+        <td>BBB</td>  
+        <td>CCC</td>  
+        <td>DDD</td>  
+        <td>EEE</td>  
+    </tr>  
+    <tr>  
+        <td>FFF</td>  
+        <td>GGG</td>  
+        <td>HHH</td>  
+        <td>III</td>  
+        <td>JJJ</td>  
+    </tr>  
+</table>  
+        <button type="button" onclick="method4('tableExcel')">导出Excel方法四</button>  
+    </div>
+<script src="Blob.js"></script>
+<script src="FileSaver.js"></script>
+<script>
+/*
+function saveAs(Url,filename){
+    var blob=new Blob([''], {type:'application/octet-stream'}),
+        url = webkitURL.createObjectURL(blob),
+        a = document.createElementNS(xhtml,'a'),
+        e = document.createEvent('MouseEvents');
+    a.href = Url;
+    a.download = filename; 
+    a.style.display = "none";
+    document.body.appendChide(a);
+    e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+    a.dispatchEvent(e);
+    //webkitURL.revokeObjectURL(url);
+    a.parentNode.removeChild(a);
+} 
+*/
+function downloadFile(fileName, content){
+
+    var aLink = document.createElement('a'),
+        blob = new Blob([content]),
+        evt = document.createEvent("HTMLEvents");
+    evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错, 感谢 Barret Lee 的反馈
+    aLink.download = fileName;
+    aLink.href = URL.createObjectURL(blob);
+    aLink.dispatchEvent(evt);
+}
+(function(){
+	document.getElementById("saveBtn").onclick = function(event){
+        event = event? event : window.event;
+		if(event.preventDefault) event.preventDefault();
+		var BB = self.Blob;
+		saveAs(
+			  new BB(
+				  ["\ufeff" + document.getElementById("content").value] //\ufeff防止utf8 bom防止中文乱码
+				, {type: "text/plain;charset=utf8"}
+			),// document.getElementById("filename").value
+            "test.csv"
+		);
+	};
+})();
+//第四种  
+        function method4(tableid){  
+  
+            var curTbl = document.getElementById(tableid);  
+            var oXL;  
+            try{  
+                oXL = new ActiveXObject("Excel.Application"); //创建AX对象excel  
+            }catch(e){  
+                alert("无法启动Excel!\n\n如果您确信您的电脑中已经安装了Excel，"+"那么请调整IE的安全级别。\n\n具体操作：\n\n"+"工具 → Internet选项 → 安全 → 自定义级别 → 对没有标记为安全的ActiveX进行初始化和脚本运行 → 启用");  
+                return false;  
+            }  
+            var oWB = oXL.Workbooks.Add(); //获取workbook对象  
+            var oSheet = oWB.ActiveSheet;//激活当前sheet  
+            var sel = document.body.createTextRange();  
+            sel.moveToElementText(curTbl); //把表格中的内容移到TextRange中  
+            sel.select(); //全选TextRange中内容  
+            sel.execCommand("Copy");//复制TextRange中内容  
+            oSheet.Paste();//粘贴到活动的EXCEL中  
+            oXL.Visible = true; //设置excel可见属性  
+            var fname = oXL.Application.GetSaveAsFilename("将table导出到excel.xls", "Excel Spreadsheets (*.xls), *.xls");  
+            oWB.SaveAs(fname);  
+            oWB.Close();  
+            oXL.Quit();  
+        }  
+document.getElementById("daochu").onclick = function(){
+    //saveAs("第一列,第er列,第sab列","表格测试.csv");
+    downloadFile("表格测试.csv","第一列,第er列,第sab列");
+}
+</script>
+</body>
+</html>

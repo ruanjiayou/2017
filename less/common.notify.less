@@ -1,0 +1,44 @@
+/**
+作者：阮家友
+时间：2017-8-9 21:50:28
+说明：提示插件的样式(loading/toast)
+    2017-10-21 02:12:17
+    存在的问题：loading和toast的参数名称不一致、缺少背景遮罩的参数、缺少回调函数
+*/
+@import "mixins.less";
+.notify {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    //全屏
+    &.loading-full {
+        position: fixed;
+        z-index: 10001;
+    }
+    //遮罩半透明背景
+    &.loading-mask {
+        background-color: rgba(102,102,102, 0.7);
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=75);
+        background-color: #666\0;
+    }
+    //居中主体
+    .loading-body {
+        position: absolute; left: 50%; top: 50%; width: 250px; min-height: 22px; text-align: center; border-radius: 7px; padding: 20px 15px; background-color: #FFF; color: #999; font-size: 14px;word-break: break-all;
+        &.loading-toast {
+            background-color: rgba(102,102,102, 0.7);
+            filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+            background-color: #666\0;
+            color: #FFF;
+        }
+    }
+    //图标
+    .loading-icon {
+        width: 16px; height: 16px; margin-right: 10px; vertical-align: middle; 
+    }
+    //文本
+    .loading-text {
+        display: inline
+    }
+}

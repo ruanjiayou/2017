@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<title>test</title>
+    <link rel="stylesheet" href="style.css"/>
+    <style>
+        html,body,p{margin:0;}
+        #center { height:300px;overflow:hidden;}
+    </style>
+</head>
+<body>
+    <button id="btn">展开</button>
+    <div id="center">
+        <p id="show">调用方法只用传入selector就行 样式看是css里还是用sheet生成 问题就是：距离底部至少5px 明明正好相等~~footer加个overflow就好了~</p>
+        <p>2017-3-18 18:26:03 发现是img的问题 float或者display block后正常了~ 不需要overflow 这个有巨大限制</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+        <p>xxxxxxxxxxxxx</p>
+    </div>
+    <div>
+        <label>sdfsdfdsfdfdfd</label>
+    </div>
+        <div class="fix_bottom">
+            <img src="logo.png"/>
+        </div>
+    
+<script src="jquery-1.7.js"></script>
+<script src="../js/core.js"></script>
+<script src="../js/core.bottom.js"></script>
+<script>
+$.sheet().addCSSRulers({
+    ".fix_bottom":"visibility:hidden;",
+    ".fix_bottom img":"height:100%;display:block;"
+});
+BottomElement(".fix_bottom");
+var obtn = document.getElementById("btn");
+Event.addEvent(obtn,"click",function(){
+    console.log("1");
+    if(this.innerHTML=="展开"){
+        document.getElementById("center").style.height = "auto";
+        this.innerHTML = "折叠";
+    }
+    else{
+        document.getElementById("center").style.height = "300px";
+        this.innerHTML = "展开";
+    }
+});
+Event.addEvent(obtn,"click",function(){
+    console.log("2??");
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<title>test</title>
+    <script src="../js/core.js"></script>
+    <style>
+        #center {padding:2rem;}
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p id="show">测试</p>
+        <div id="test">
+            <p class="temp">测试add css ruler 2017-3-13 09:55:57 将js整合到core.js中了</p>
+            <button id="btn">clear style</button>
+        </div>
+    </div>
+<script>
+//var sh1 = new Sheet().addCSSRulers({".temp":"background-color: #ccc; color: #c00;"});
+var sh1 = $.sheet({".temp":"background-color: #ccc; color: #c00;"});
+document.getElementById("btn").onclick = function(){
+    sh1.style.innerHTML = "";
+    console.log(sh1.style.innerHTML);
+}
+</script>
+</body>
+</html>

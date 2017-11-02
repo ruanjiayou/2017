@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<title>test</title>
+    <link rel="stylesheet" href="/css/common.css"/>
+    <script type="text/javascript" src="jquery-1.7.min.js"></script>
+    <script type="text/javascript" src="jquery.validate.min.js"></script>
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+    <style>
+        #center {padding:2rem;}
+        .btn { display:inline-block; padding: 5px 10px; color:#fff; background-color:#69f; }
+        .cancle { background-color: #ccc; }
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p id="show">插件监听了form的submit事件 实现的</p>
+        <xmp>
+        http://www.runoob.com/jquery/jquery-plugin-validate.html
+        input name必须与id一致 真他妈日了狗了 不然valid()始终返回true！！！貌似是根据name来的
+        Lucas 页面一直报 f.setting[g].call is not a function ~~ 百度也没答案 发现 onkeyup： true设置有问题 
+        max min 后面是数字或数组都可以
+        如果这个参数为true，那么表单不会提交，只进行检查，调试时十分方便。
+        $("#signupForm").validate({
+            debug:true
+        });
+        如果一个页面中有多个表单都想设置成为 debug，则使用：
+        $.validator.setDefaults({
+           debug: true
+        })
+        每个字段验证通过执行函数
+        success：String,Callback
+        添加自定义校验
+        addMethod：name, method, message
+                   method中的参数：value element parameter
+        WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})
+        </xmp>
+        <div id="test"></div>
+        <form id="form1" method="get" action="">
+        <table>
+            <tr>
+                <td>密码：</td>
+                <td><input id="txtPassword" name="txtPassword" type="text"/></td>
+            </tr>
+            <tr>
+                <td>确认：</td>
+                <td><input id="equlto" name="equlto" type="text"/></td>
+            </tr>
+            <tr>
+                <td>日期：</td>
+                <td><input id="txtDate" name="txtDate" autocomplete="off" type="text" onclick="WdatePicker();"/></td>
+            </tr>
+            <tr>
+                <td>数量1：</td>
+                <td><input id="txtNumber1" name="txtNumber1" type="text"/></td>
+            </tr>
+            <tr>
+                <td>数量2：</td>
+                <td><input id="txtNumber2" name="txtNumber2" type="text"/></td>
+            </tr>
+            <tr>
+                <td>价格：</td>
+                <td><input id="txtPrice" name="txtPrice" type="text"/></td>
+            </tr>
+            <tr>
+                <td>手机号：</td>
+                <td><input id="txtPhone" name="txtPhone" type="text"/></td>
+            </tr>
+            <tr>
+                <td>自定义邮编：</td>
+                <td><input id="txtCustom" name="txtCustom" type="text"/></td>
+            </tr>
+            <tr>
+                <td>完成时间</td>
+                <td><input id="txtFinishTime" name="txtFinishTime" autocomplete="off" type="text" onclick="WdatePicker();"/></td>
+            </tr>
+            <tr>
+                <td>同意协议：</td>
+                <td><input id="txtGree" name="txtGree" type="checkbox"/></td>
+            </tr>
+            <tr>
+                <td>下拉选择</td>
+                <td>
+                    <select id="txtJungle" name="txtJungle">
+                        <option value="">请选择</option>
+                        <option value="1">Buga</option>
+                        <option value="2">Baga</option>
+                        <option value="3">Oi</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <label class="btn confirm">提交</label>
+                    <label class="btn cancle" onclick="if(parent!=window)parent.$r_hideDialog();">取消</label>
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+<script>
+    $.validator.setDefaults({
+       //debug: true
+    });
+    // 邮政编码验证   
+    jQuery.validator.addMethod("isZipCode", function(value, element) {
+        return /^[0-9]{6}$/.test(value) ? true : false;
+    });
+    // 手机号   
+    jQuery.validator.addMethod("isPhone", function(value, element) {
+        return /^[1][0-9]{10}$/.test(value) ? true : false;
+    });
+    
+    // 两位小数验证   
+    jQuery.validator.addMethod("isPrice", function(value, element) { 
+        return /^\d+(\.\d{1,2})?$/.test(value) ? true : false;
+    });
+    
+    //time 时间不能早于今天
+    jQuery.validator.addMethod('time', function(value, element, param){
+        //console.log(param);
+        return new Date(Date.parse(param.getFullYear()+'-'+(param.getMonth()+1)+'-'+param.getDate())) <= new Date(Date.parse(value)) ? true : false;
+    });
+    $(".confirm").click(function(){
+        console.log("valid?");
+        if($("#form1").valid()){
+            console.log("passed!");
+        }
+        else{
+            console.log("failed!");
+        };
+    });
+    $('#form1').validate({
+        rules: {
+            txtPassword: { required: true, minlength: 6, maxlength: 12 },
+            equlto: { required: true, equalTo: '#txtPassword'},
+            txtDate: { required: true, date: true },
+            txtNumber1: { required: true, number: true, min: 0.001 },
+            txtNumber2: { required: true, digits: true, min: 0.001, max: 100 },
+            txtPrice: { required: true, isPrice: true },
+            txtPhone: { required: true, isPhone: true },
+            txtCustom: { required: true, isZipCode: true },
+            txtFinishTime: { required: true, time: new Date() },
+            txtGree: { required: true  }
+        },
+        messages: {
+            txtPassword: { required: '请输入！', minlength: '长度不能小于6！',  maxlength: '长度不能超过12个！' },
+            equlto: { required: '请输入！', equalTo: '两次密码不相同！'},
+            txtDate: { required: '请输入！', date: '时间格式不正确！' },
+            txtNumber1: { required: '请输入！', number: '不是有效的数字！', min: '不能小于等于0！' },
+            txtNumber2: { required: '请输入！', digits: '必须是整数', min: '不能小于等于0！', max: '库存只有100！' },
+            txtPrice: { required: '请输入！', number: '不是有效的数字！', isPrice: '价格最多两位小数' },
+            txtPhone: { required: '请输入！', isPhone: '手机号格式不正确！' },
+            txtCustom: { required: '请输入！', isZipCode: '邮编格式不正确！'},
+            txtFinishTime: { required: '请输入！', time: '完成时间不能早于今天'},
+            txtGree: { required: '必须统一协议'  }
+        }
+    });
+    //提交成功后刷新父窗口
+    function targetSaved(flag) {
+        alert("操作成功！");
+        parent.$r_hideDialog();
+        parent.location.reload();
+    }
+
+     
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>test</title>
+    <link rel="stylesheet" href="http://127.0.0.1:2017/css/common.css"/>
+    <link rel="stylesheet" href="http://127.0.0.1:2017/css/common.layout.css"/>
+    <link rel="stylesheet" href="http://127.0.0.1:2017/css/common.button.css"/>
+    <link rel="stylesheet" href="http://127.0.0.1:2017/css/common.pagination.css"/>
+    <link rel="stylesheet" href="http://127.0.0.1:2017/css/common.table.css"/>
+    <link rel="stylesheet" href="http://127.0.0.1:2017/css/common.page.css"/>
+    <script src="http://127.0.0.1:2017/js/jquery.js"></script>
+    <script src="http://127.0.0.1:2017/js/core.js"></script>
+    <script src="http://127.0.0.1:2017/js/plugins/zh2arab.js"></script>
+    <style>
+        #center {padding:2rem;}
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p id="show">测试</p>
+    </div>
+<script>
+//测试集
+/**
+六百六十九章:建在这里
+第一七四章 梵高的粉丝?
+第238章 抵达璃城
+第011章:重返前夕
+538.迎来大结局的星你
+102 价格实惠
+0161你觉得白洁怎样?
+请假
+第四四一章
+一千一
+**/
+
+var testData = [
+    //1.标准中文数字部分
+    {
+        origin: '第一章',
+        output: '',
+        expect: '1',
+    },
+    {
+        origin: '第二十章',
+        output: '',
+        expect: '20',
+    },
+    {
+        origin: '第二十一章',
+        output: '',
+        expect: '21',
+    },
+    {
+        origin: '第一百一十一章',
+        output: '',
+        expect: '111',
+    },
+    {
+        origin: '第一千一百零一章',
+        output: '',
+        expect: '1101',
+    },
+    {
+        origin: '第一千零一章',
+        output: '',
+        expect: '1001',
+    },
+    {
+        origin: '第十一章 第二更',
+        output: '',
+        expect: '11',
+    },
+    {
+        origin: '第四四一章',
+        output: '',
+        expect: '441',
+    },
+    {
+        origin: '第一百零一章',
+        output: '',
+        expect: '101',
+    },
+    {
+        origin: '第一千一百一十一章',
+        output: '',
+        expect: '1111',
+    },
+    {
+        origin: '感言',
+        output: '',
+        expect: '',
+    },
+    {
+        origin: '第一千零一十一章',
+        output: '',
+        expect: '1011',
+    },
+    {
+        origin: '第一千一百三十章',
+        output: '',
+        expect: '1130',
+    },
+    {
+        origin: '三十三亿',
+        output: '',
+        expect: '3300000000',
+    },
+    {
+        origin: '三十三亿零四十四万七千五百八十八',
+        output: '',
+        expect: '3300447588',
+    },
+    //2.中文大写数字混合
+    {
+        origin: '陆',
+        output: '',
+        expect: '6',
+    },
+    {
+        origin: '壹拾',
+        output: '',
+        expect: '10',
+    },
+    {
+        origin: '伍叁',
+        output: '',
+        expect: '53',
+    },
+    {
+        origin: '贰佰',
+        output: '',
+        expect: '200',
+    },
+    {
+        origin: '叁佰零壹',
+        output: '',
+        expect: '301',
+    },
+    {
+        origin: '壹仟零贰拾',
+        output: '',
+        expect: '1020',
+    },
+    {
+        origin: '贰万壹仟贰',
+        output: '',
+        expect: '1100',
+    },
+    {
+        origin: '叁万零肆仟壹',
+        output: '',
+        expect: '31100',
+    },
+    {
+        origin: '五万零贰佰零贰',
+        output: '',
+        expect: '50202',
+    },
+    //标准阿拉伯数字
+    {
+        origin: '第011章:重返前夕',
+        output: '',
+        expect: '11',
+    },
+    {
+        origin: '538.迎来大结局的星你',
+        output: '',
+        expect: '538',
+    },
+    {
+        origin: '102 价格实惠',
+        output: '',
+        expect: '102',
+    },
+    {
+        origin: '0161你觉得白洁怎样?',
+        output: '',
+        expect: '161',
+    },
+    {
+        origin: '',
+        output: '',
+        expect: '',
+    },
+];
+testData.forEach(function(item,index){
+    item.output = $.zh2int(item.origin,'g');
+    console.dir(item);
+});
+</script>
+</body>
+</html>

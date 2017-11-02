@@ -1,0 +1,27 @@
+html, body { margin: 0; }
+h1, h2, h3, h4, h5, h6, pre, code { padding: 0; margin: 0; }
+input, div, textarea { box-sizing: border-box; } /* 如果不用兼容IE这样写会简化代码 */
+/* l-v-h-a原则 */
+a:link, a:visited,a:hover, a:active { color: #4c4c4c; }
+a:focus { outline: 0 none; }
+a { -webkit-tap-highlight-color:rgba(0,0,0,0); }
+img, iframe { border: 0 none; } /* frameborder="0"设置边框是不否为3维（0=否，1=是） 要在标签内写 为了对付IE fieldset的边框要保留 */
+img { vertical-align: top;/* -ms-interpolation-mode: bicubic;*/ } /* IE7中缩放采用高质量双线性图片采样 */
+iframe { width: 100%; height: 100%; overflow-y: auto; }
+ul { margin-top: 0; margin-bottom: 0; padding-left: 0; }
+ul > li { list-style-type: none; }
+
+p { margin: 0; }
+input { border: 1px solid #e8e8e8; }
+input:focus { outline: none; } /* input[type="text"]:focus, input[type="password"]:focus { border-color: rgb(82, 168, 236); } */
+
+textarea { border: 1px solid #e8e8e8; padding: 0.5rem; resize: vertical; }/*  不允许用户通过右下角的三角形调整 */
+table { border-spacing: 0; border-collapse: collapse; } /* 合并表格的边框线  table-layout: fixed; width: 100%;这些在这里去掉 减少影响 兼容公司的样式 */
+
+article, aside, dialog, footer, header, section, footer, nav, figure, menu{ display: block; } /* H5标签兼容低版本IE,页面中需要用条件注释对每个H5标签用document.createElement。 例如：document.createElement("header");*/
+button, button:focus { outline: 0 none; border: 0 none; }
+button::-moz-focus-inner, input::-moz-focus-inner { padding: 0; border: 0; }
+.no-select { -moz-user-select: none; /*火狐*/-webkit-user-select: none; /*webkit浏览器*/-ms-user-select: none; /*IE10*/-khtml-user-select: none; /*早期浏览器*/user-select: none; }
+.clearfix:before, .clearfix:after { display: block; height: 0; clear: both; content: ""; } /* 零宽度字符 */
+.clearfix { *zoom: 1; } /* IE7不支持:before :after */
+.clear { clear: both; }

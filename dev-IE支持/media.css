@@ -1,0 +1,4 @@
+﻿.cols { width: 50%; height: 30px; margin: center; background-color: #69f; }
+@media screen and (max-width: 800){
+    .cols { width: 100%; }
+}

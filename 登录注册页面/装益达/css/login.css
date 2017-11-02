@@ -1,0 +1,42 @@
+﻿/* 顶部广告 */
+.top_ad { height: /*90px*/0; background: #5a0183 url(images/ad-bg.png) center center no-repeat; }
+.center { width: 1200px; margin: 0 auto; }
+
+.logo { float: left; margin: 62px 0 66px 0; }
+.back { float: right; margin-top: 75px; background: url(images/arrow-back.png) left 6px no-repeat; font-size: 14px; color: #838383; text-indent: 14px; }
+.main { height: 465px; background: #47001e url(images/banner-login.png) center center no-repeat; }
+.login_box {float: right; width: 360px; margin-top: 45px; border: 1px solid #eee; border-radius: 5px; background-color: #fff; }
+    /*登录方式切换选项卡*/
+    .login_tab_heads { margin: 0 40px; }
+    .login_tab_heads > li { float: left; width: 50%; height: 52px; line-height: 60px; border-bottom: 3px solid #eee; cursor: pointer; font-size: 14px; text-align: center; }
+    .login_tab_heads > li.active { border-color: #00816d; }
+    .login_tab_contents > div.active { margin: 40px; }
+    /*账号登录部分*/
+    .user_input, .psw_input, .login_btn, .operation { display: block; box-sizing: border-box; width: 280px; }
+    .user_input, .psw_input { border: 1px solid #dedede; padding: 12px 0 12px 40px ; background-position: 5px center; background-repeat: no-repeat; }
+    .user_input { margin-bottom: 25px; background-image: url(images/icon-user.png); }
+    .psw_input { background-image: url(images/icon-password.png); }
+    .login_btn { height: 37px; line-height: 37px; margin-top: 30px; border-radius: 4px; background-color: #00816d; cursor: pointer; color: #fff; font-size: 14px; text-align: center; }
+    .operation { margin-top: 18px; color: #bcbcbc; text-align: right; }
+        .operation a { color: #bcbcbc; font-family: "宋体"; }
+        .operation a:hover { text-decoration: underline; }
+        .operation a:first-child { float: left; color: #6c6c6c; }
+    .other_login { margin-top: 50px; margin-left: -15px; color: #b2b2b2; }
+        .other_login > li { float: left; }
+        .other_login > li:first-child { width: 170px; border-right: 1px solid #e6e6e6; }
+        .other_login > li + li { margin-left: 15px; }
+        .other_login p { color: #b3b3b3; }
+        .other_login ul { margin-top: 13px; }
+        .other_login ul li { float: left; margin-right: 5px; }
+        .icon_qq, .icon_weibo, .icon_weixin, .icon_alipay, .icon_taobao { display: block; width: 28px; height: 28px; background-position: center center; background-repeat: no-repeat; text-indent: -9999px; }
+        .icon_qq { background-image: url(images/icon-l-qq.png); }
+        .icon_weibo { background-image: url(images/icon-l-sina.png); }
+        .icon_weixin { background-image: url(images/icon-l-wx.png); }
+        .icon_alipay { background-image: url(images/icon-l-zfb.png); }
+        .icon_taobao { background-image: url(images/icon-l-taobao.png); }
+        .icon_phone { display: block; height: 28px; line-height: 28px; margin-top: 13px; background: url(images/icon-l-phone.png) left center no-repeat; color: #b3b3b3; text-indent: 30px; }
+    .login_box > .coop_count { }
+    /*二维码*/
+    .QRcode_box { margin: 40px 40px 20px; text-align: center; display: none; }
+        .QRcode_box img { border: 1px solid #f1f1f1; }
+        .QRcode_box div { margin-top: 20px; }

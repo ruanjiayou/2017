@@ -1,0 +1,49 @@
+2016-9-29 11:44:34
+    开启svn维护版本。
+2016-9-29 11:45:09
+    依赖：组件样式、图片、jQuery、NewObject.js
+    实例：
+    <div class="check-flat checked" data-radiocheck="{'name':'fruit'}"><label>苹果</label></div>
+2016-9-29 11:46:01
+    1.页面加载后对所有的.check-flat radio-flat进行处理。
+    2.对每个div进行处理(生成input 并设置已初始化标记)，对div和label绑定单击事件
+    3.单击处理事件中 checkbox类型组件只是切换当前组件本身的状态;radio类型组件或获取页面中所有name相同的组件并置空，然后设置当前为选中状态
+2016-9-29 11:52:14
+    IE8中报错  data["ivalue"] = odiv.children("label").html().trim(); 对象不支持此属性或方法
+    不支持trim()方法！
+2016-9-29 11:57:22
+    IE7中div的display inline-block无效 
+    diplay: inline-block; *display: inline; *zoom: 1; hack一下
+2016-9-29 12:08:42
+    测试中，php后台能取得checkbox 和radio的值
+    注意：checkbox的name一定要加[]不然多个checkbox只有一个值 value设置为label中的值 最好trim()一下 这是我之前曾犯过的错误
+    至此浏览器基本能兼容，效果能实现。
+2016-11-7 08:39:56
+    转移到公司服务器上
+2016-11-7 08:53:33
+    采用label+ i、input的结构
+2016-11-7 09:55:13
+    设置checked = true达到选中目的此属性不会显示在标签内，但是去掉display none可以看到效果。
+    .check-flat上单击一次，事件会执行两次，通过阻止默认事件解决了问题
+2016-11-7 10:36:58
+    重要修改：背景图里的图表改为竖向排列，去掉i标签，input只需写name type和value由js自动生成
+2016-11-7 11:50:10
+    火狐 IE7/8测试通过
+    发现 清除浮动的content:"\200B"不是零高度的~还是直接用空字符串吧
+    input的value由js设置 后台可用literal放在input前
+2017-3-20 14:04:22
+    从公司UI文件夹中移动到PC2017版本
+    尝试使用rem
+2017-5-3 14:15:58
+    补充：之前新增了check-all效果
+2017-5-26 09:49:17
+    FF33.0都是方的 [role='radiobtn'] { background-position-y: -77px; } 没生效
+    IE11 方的要双击才切换
+2017-5-26 10:38:39
+    IE11中 取消默认事件 event.returnValue 和 preventDefault() 他都支持 不能用 if else 要用 if if
+2017-7-6 10:14:10
+    修复初始化bug、优化callback传参、优化全选(主动与被动效果/name一致性) 添加必要的注释 整体代码精简优化 jshint通过
+    1.6+的jQuery要用prop，尤其是checkBox的checked的属性的判断
+    demo ie8中背景图有问题 less 字体基准换为px或者用respond.js
+2017-8-3 14:46:51
+    pull request ：有两个全选(顶部和底部)

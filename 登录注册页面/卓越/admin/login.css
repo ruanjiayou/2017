@@ -1,0 +1,12 @@
+﻿html,body,form { height: 100%; }
+.login_box_bg { position: absolute; left: 50%; top: 50%; width: 463px; height: 555px; margin-left: -231px; margin-top: -275px; background: url(images/login_bg.png) center center no-repeat; }
+.login_box { width: 225px; margin: 164px auto 0 auto; }
+    .login_box ul { padding-top: 78px; }
+    .login_box li { position: relative; margin-top: 10px; }
+    .login_box li span { position: absolute; left: 0; top: 0; line-height: 35px; color: #5e4a3f; }
+    .login_box li input { width: 182px; margin-left: 44px; border: 1px solid #dcdddd; border-radius: 17px; padding: 8px 12px; behavior: url(/css/ie-css3.htc); z-index: 10; position: relative; }
+    .login_box li input.error { border-color: #c00; }
+    .login_box li.operation { padding-top: 10px; text-align: right; }
+    .login_box .operation label { display: inline-block; width: 37px; height: 37px; line-height: 37px; margin-left: 10px; border-radius: 10px; cursor: pointer; text-align: center; color: #fff; -moz-user-select: none; /*火狐*/-webkit-user-select: none; /*webkit浏览器*/-ms-user-select: none; /*IE10*/-khtml-user-select: none; /*早期浏览器*/user-select: none; behavior: url(/css/ie-css3.htc); z-index: 10; position: relative;  }
+    .login_box .login { background-color: #00a96b; } 
+    .login_box .reset { background-color: #614c3f; }

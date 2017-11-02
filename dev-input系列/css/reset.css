@@ -1,0 +1,10 @@
+﻿* { margin:0; padding:0; }
+/*默认色、字体*/
+body { font-size:12px; font-family: "Microsoft YaHei"; color: #333; }
+a { text-decoration:none; color:#000; }
+img { border:none; }
+ul,li { list-style:none; }
+table { border-collapse: collapse; border-spacing:0; }
+.clear { clear:both; }
+.clearfix:before, .clearfix:after { display: block; height: 0; clear: both; content: ""; visibility: hidden; } 
+.clearfix { *zoom: 1; } /* ie<8 */

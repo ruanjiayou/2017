@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="viewport"/>
+    <title>签到查询</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/attendance.css" />
+    <script src="js/adapt.js"></script>
+    <script src="js/MyPesture.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+</head>
+<body class="fix_bottom_logo">
+    <form id="form1">
+    <div>
+        <div class="title bgc_white">
+            <a class="prev" href="javascript:;" onclick="changeMonth(false);"><img src="css/images/attendance_arrow_left.png" /></a>
+            <a class="next" href="javascript:;" onclick="changeMonth(true);"><img src="css/images/attendance_arrow_right.png" /></a>
+            <div id="timeStr"></div>
+        </div>
+        <table>
+            <tr>
+                <td>日</td>
+                <td>一</td>
+                <td>二</td>
+                <td>三</td>
+                <td>四</td>
+                <td>五</td>
+                <td>六</td>
+            </tr>
+        </table>
+        <ul id="daysList"></ul>
+    </div>
+    <div class="logo_bottom">
+        <img src="css/images/logo.png"/>
+    </div>
+    </form>
+<script>
+    /*固定底部*/
+    if (document.documentElement.clientHeight < document.body.offsetHeight) {
+        document.body.style["position"] = "relative";
+    }
+    var Temp = new Date();
+    var dataInfo = [1,5,7,11,12,18];
+    calulate(Temp, "timeStr", "daysList");
+
+    //切换月份
+    function changeMonth(bNext) {
+        if (bNext) {
+            if (Temp.getMonth() + 1 == 12) {
+                Temp.setFullYear(Temp.getFullYear() + 1);
+                Temp.setMonth(0);
+            }
+            else Temp.setMonth(Temp.getMonth() + 1);
+        }
+        else {
+            if (Temp.getMonth() + 1 == 1) {
+                Temp.setFullYear(Temp.getFullYear() - 1);
+                Temp.setMonth(11);
+            }
+            else Temp.setMonth(Temp.getMonth() - 1);
+        }
+        calulate(Temp, "timeStr", "daysList");
+    }
+    new AlloyFinger(document.body, {
+        //已测试通过 pressMove停止后才调用swipe
+        swipe: function (evt) {
+            console.log(evt.direction);
+            if (evt.direction == "Left") {
+                changeMonth(true);
+            }
+            else {
+                changeMonth(false);
+            }
+        }
+
+    });
+
+    //判断是否签到
+    function isExists(n) {
+        for (var i = 0; i < dataInfo.length; i++) {
+            if (n == dataInfo[i]-1) return true;
+        }
+        return false;
+    }
+
+    //计算日期和天数信息
+    function calulate(date, idTimeStr, idDaysList) {
+        var res = { timeStr: "", daysList: "" };
+
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var days = 30;
+        //本月的第一天
+        var FirstDay = new Date();
+        FirstDay.setFullYear(year);
+        FirstDay.setMonth(month - 1);
+        FirstDay.setDate(1);
+        //日期信息
+        res.timeStr = year + "年" + month + "月";
+        //拼接字符串
+        res.daysList = "";
+        for (var i = FirstDay.getDay() ; i > 0; i--) {
+            res.daysList += "<li>&nbsp;</li>";
+        }
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+            days = 31;
+        }
+        else if (FirstDay.getMonth() + 1 == 2) {
+            if ((year % 100 == 0 && year % 400 == 0) || (year % 100 != 0 && year % 4 == 0)) days = 29;
+            else days = 28;
+        }
+
+        var oul = document.getElementById(idDaysList);
+        for (var i = 0; i < days; i++) {
+            if(isExists(i))
+                res.daysList += "<li class='active'><label>" + (i + 1) + "</label></li>";
+            else {
+                res.daysList += "<li><label>" + (i + 1) + "</label></li>";
+            }
+        }
+
+        document.getElementById(idTimeStr).innerHTML = res.timeStr;
+        oul.innerHTML = res.daysList;
+        var olabels = $(oul).find("label");
+        olabels.css({ "height": olabels.get(0).offsetWidth + "px", "line-height": olabels.get(0).offsetWidth + "px" });
+    }
+
+</script>
+</body>
+</html>

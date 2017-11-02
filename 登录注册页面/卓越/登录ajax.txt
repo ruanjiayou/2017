@@ -1,0 +1,23 @@
+//提交验证
+    $(".login").on("click", function () {
+        if (check() == true) {
+                $.ajax({
+                    type: "GET",
+                    url: "ajax/LoginService.asmx/UserLoginCheck?userName=" + $(user).val().trim() + "&userPwd=" + $.md5($(pswd).val().trim()),
+                    dataType: "json",
+                    beforeSend: function (XMLHttpRequest) { },
+                    success: function (data) {
+                        console.log(data);
+                        if (data.Status == "success") {
+                            window.location.href = "index.aspx";
+                        } else if (data.Status == "reject") {
+                            alert("用户名或密码错误！");
+                        } else {
+                            alert("系统出错啦！");
+                        }
+                    },
+                    complete: function (XMLHttpRequest, textStatus) { },
+                    error: function () { }
+                });
+        }
+    });

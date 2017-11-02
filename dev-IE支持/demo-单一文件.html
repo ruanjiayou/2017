@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<title>test</title>
+    <link rel="stylesheet" href="common.css"/>
+    <link rel="stylesheet" href="media.css"/>
+    <link rel="stylesheet" href="rem.css"/>
+    <link rel="stylesheet" href="html5.css"/>
+    <link rel="stylesheet" href="holder.css"/>
+    <link rel="stylesheet" href="ie-css3.css"/>
+    <script src="jquery.js"></script>
+    <!--[if lt IE 9]>
+    <script src="origin.js"></script>
+    <script src="trim.js"></script>
+    <script src="JSON.js"></script>
+    <script src="HTML5.js"></script>
+    <script src="excanvas.js"></script>
+    <script src="placeholder.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div id="center">
+        <p id="show">各自有对应的js和css文件</p>
+        <div id="test">
+            <div class="cols">1.媒体查询 √</div>
+            <div class="rem">2.rem单位 √</div>
+            <div><label class="btn">3.css3圆角 √</label></div>
+            <nav>4.html5:nav √</nav>
+            <p>5.下面是canvas √</p>
+            <canvas id="c1"></canvas>
+            <div class="login"><input class="input" placeholder="6.请输入 √"/></div>
+            <p>7.IE8不支持window.location.origin √</p>
+        </div>
+        <span>excanvas老是容易：对象不支持“getContext”属性或方法 单独的demo里又没问题~~~</span>
+    </div>
+    <label class="btn" style="display:none;">css3圆角 √</label>
+<!--[if lt IE 9]>
+    <script src="rem.min.js"></script>
+    <script src="respond.js"></script>
+<![endif]-->
+<script>
+if(!$.support.leadingWhitespace) $.holder.init();
+var oc1 = document.getElementById("c1");
+var ogc = oc1.getContext("2d");
+ogc.beginPath();
+ogc.moveTo(10+0.5,50);
+ogc.lineTo(100.5,100);
+ogc.closePath();
+ogc.stroke();
+</script>
+</body>
+</html>

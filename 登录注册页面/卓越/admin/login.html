@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<title>test</title>
+    <link rel="stylesheet" href="login.css"/>
+    <script src="jquery-1.8.3.min.js"></script>
+    <script src="jquery.md5.js"></script>
+    <script src="placeholder.js"></script>
+    <style>
+        /*style.css*/
+        html, body { margin: 0; }
+        h1, h2, h3, h4, h5, h6, pre, code { padding: 0; margin: 0; }
+        input, div, textarea { box-sizing: border-box; } /* 如果不用兼容IE这样写会简化代码 */
+        input:focus { outline: none; }
+        /* l-v-h-a原则 */
+        a:focus { outline: 0 none; }
+        a { -webkit-tap-highlight-color:rgba(0,0,0,0); text-decoration: none; }
+        img, iframe { border: 0 none; } /* frameborder="0"设置边框是不否为3维（0=否，1=是） 要在标签内写 为了对付IE fieldset的边框要保留 */
+        img { vertical-align: top;/* -ms-interpolation-mode: bicubic;*/ } /* IE7中缩放采用高质量双线性图片采样 */
+        iframe { width: 100%; height: 100%; overflow-y: auto; }
+        ul { margin-top: 0; margin-bottom: 0; padding-left: 0; }
+        ul > li { list-style-type: none; }
+        p { margin: 0; }
+        textarea { padding: 5px; resize: vertical; }/*  不允许用户通过右下角的三角形调整 */
+        table { border-spacing: 0; border-collapse: collapse; } /* 合并表格的边框线  table-layout: fixed; width: 100%;这些在这里去掉 减少影响 兼容公司的样式 */
+
+        article, aside, dialog, footer, header, section, footer, nav, figure, menu{ display: block; } /* H5标签兼容低版本IE,页面中需要用条件注释对每个H5标签用document.createElement。 例如：document.createElement("header");*/
+        button, button:focus { outline: 0 none; border: 0 none; }
+        button::-moz-focus-inner, input::-moz-focus-inner { padding: 0; border: 0; }
+        .no-select { -moz-user-select: none; /*火狐*/-webkit-user-select: none; /*webkit浏览器*/-ms-user-select: none; /*IE10*/-khtml-user-select: none; /*早期浏览器*/user-select: none; }
+        .clearfix:before, .clearfix:after { display: block; height: 0; clear: both; content: ""; } /* 零宽度字符 */
+        .clearfix { *zoom: 1; } /* IE7不支持:before :after */
+        .clear { clear: both; }
+        /*common.css*/
+        html { font-size: 12px; }
+
+        .hide { display: none; }
+
+        .pagination {/* margin-top: 25px; *//* margin-bottom: 40px; */line-height: 38px;color: #4c4c4c;font-size: 12px;/* border-radius: 16px; */background-color: #efefef;}
+        .pagination > span {color: #4c4c4c;font-size: 13px;padding-left: 25px;}
+        .pagination > span > span {margin: 0 5px;/* color: #c00; */}
+        .pagination > ul { float: right; }
+        .pagination > ul > li {float: left;padding-right: 10px;font-size: 13px;color: #4c4c4c;}
+        .pagination a {height: 28px;line-height: 28px;/* border-radius: 4px; *//* border:1px solid #d4d4d4; */padding: 0 10px;/* background-color: #f4f4f4; */color: #4c4c4c;text-decoration: none;background: none;border: none;}
+        .pagination input {float: left; margin-top: 8px; width: 20px;height: 20px;line-height: 20px;border-radius: 0;background-color: #fff;    border: 1px solid #e5e5e5;}
+        .pagination a.goto { display: inline-block; width: 35px; padding: 0; text-align: center; height: 24px; line-height: 24px; margin: 3px 0; margin-left: 5px; background: #00a96b; color: #fff; }
+
+        /*mask*/
+        .mask { position:absolute;top:0;left:0;width:100%;height:100%;z-index:1000; }
+        .mask > div:first-child { width:100%;height:100%;background:#000;opacity:0.6;filter:alpha(opacity=90); }
+        .mask > div + div { position: absolute; left: 0; right: 0; top: 50%; text-align: center;color:#fff; }
+            .main { display:inline-block;margin-top: -50%; *margin-top: -14%; background-color: #ccc; }
+            .main p { margin: 0; background-color: red; }
+    </style>
+</head>
+<body>
+    <div id="center">
+        <div class="login_box_bg">
+            <div class="login_box">
+                <ul>
+                    <li>
+                        <span>用户</span>
+                        <input id="txtUserName" name="txtUserName" type="text" placeholder="请输入用户名"/>
+                    </li>
+                    <li>
+                        <span>密码</span>
+                        <input id="txtPassword" name="txtPassword" type="password" placeholder="请输入密码" />
+                    </li>
+                    <li class="operation">
+                        <label class="login">登录</label>
+                        <label class="reset">重置</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<script>
+    var user = document.getElementById("txtUserName");
+    var pswd = document.getElementById("txtPassword");
+    //IE8支持trim()方法
+    if (String.trim == undefined) {
+        String.prototype.trim = function () {
+            return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+        }
+    }
+    //重置
+    $(".reset").on("click", function () {
+        user.value = "";
+        pswd.value = "";
+        $(user).removeClass("error");
+        $(pswd).removeClass("error");
+        user.focus();
+    });
+
+    //验证
+    function check() {
+        var bValid = true;
+        if (user.value.trim() == "") {
+            bValid = false;
+            $(user).addClass("error");
+        }
+        else {
+            $(user).removeClass("error");
+        }
+        if (pswd.value.trim() == "") {
+            bValid = false;
+            $(pswd).addClass("error");
+        }
+        else {
+            $(pswd).removeClass("error");
+        }
+        return bValid;
+    }
+    //输入时验证
+    $(user).on("keyup", function (e) {
+        var keyCode = e ? e.keyCode : window.event.keyCode
+        if (this.value.trim() == "") {
+            bValid = false;
+            $(this).addClass("error");
+        }
+        else {
+            $(this).removeClass("error");
+        }
+        if (keyCode == 13) {
+            this.blur();
+            $(".login").get(0).click();
+        }
+    });
+    $(pswd).on("keyup", function (e) {
+        var keyCode = e ? e.keyCode : window.event.keyCode
+        if (this.value.trim() == "") {
+            bValid = false;
+            $(this).addClass("error");
+        }
+        else {
+            $(this).removeClass("error");
+        }
+        if (keyCode == 13) {
+            this.blur();
+            $(".login").get(0).click();
+        }
+    });
+    var submited = false;
+    //提交验证
+    $(".login").on("click", function () {
+        if (submited) return;
+        if (check() == true) {
+            submited = true;
+            var oMask;
+            $.ajax({
+                type: "GET",
+                url: "ajax/LoginService.asmx/UserLoginCheck?userName=" + $(user).val().trim()+"&stamp="+new Date().getTime() + "&userPwd=" + $.md5($(pswd).val().trim()),
+                dataType: "json",
+                beforeSend: function (XMLHttpRequest) {
+                    console.log("before:"+new Date().getTime());
+                    oMask = document.createElement("div");
+                    oMask.className = "mask";
+                    oMask.innerHTML = "<div></div><div><div class='main'><p>登录中...</p></div></div>";
+                    document.body.appendChild(oMask);
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data.Status == "success") {
+                        window.location.href = "index.aspx";
+                    } else if (data.Status == "reject") {
+                        alert("用户名或密码错误！");
+                    } else {
+                        alert("系统出错啦！");
+                    }
+                },
+                complete: function (XMLHttpRequest, textStatus) {
+                    submited = false;
+                    console.log("end:"+new Date().getTime());
+                    setTimeout(function(){
+                        oMask.parentNode.removeChild(oMask);
+                    },2000);
+                },
+                error: function () {
+                    console.log("error:"+new Date().getTime());
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

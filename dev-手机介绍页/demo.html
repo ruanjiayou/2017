@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport"/>
+	<title>移动端</title>
+    <link rel="stylesheet" href="css/css.css"/>
+    <script>
+    function adapt(designWidth, rem2px) {
+        var scale = 1 / devicePixelRatio;
+        var str = "";
+        str += "scale:"+scale+";dpr:"+devicePixelRatio+";<br/>window.innerWidth:"+window.innerWidth+"clientWidth:"+document.documentElement.clientWidth;
+        window.onload = function(){document.getElementById("test").innerHTML+=str;}
+        
+        document.querySelector('meta[name="viewport"]').setAttribute('content','width=device-width,initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+        var d = window.document.createElement('div');
+        d.style.width = '1rem';
+        d.style.display = "none";
+        var head = window.document.getElementsByTagName('head')[0];
+        head.appendChild(d);
+        var defaultFontSize = parseFloat(window.getComputedStyle(d, null).getPropertyValue('width'));
+        d.remove();
+        document.documentElement.style.fontSize = window.innerWidth / designWidth * rem2px / defaultFontSize * 100 + '%';
+        str+="size:"+document.documentElement.style.fontSize+"";
+        
+        return defaultFontSize
+    };
+    //说明：每个页面必须引入，控制页面宽度100%，计算默认字体大小
+    //使用方式：在head标签中调用adapt(designWidth, defaultFontSize)方法
+    var defaultFontSize = adapt(720, 30);
+    </script>
+</head>
+<body>
+    <div class="top">
+        <img src="css/images/logo.JPG"/>
+        <p>FunKids方茄</p>
+        <p>卓越置业集团有限公司粤海分公司</p>
+    </div>
+    <div class="main">
+        <img class="qr_code" src="css/images/QRcode.JPG"/>
+        <p class="bottom">长按识别二维码</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>test</title>
+    <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/css/common.layout.css"/>
+    <link rel="stylesheet" href="/css/common.button.css"/>
+    <link rel="stylesheet" href="/css/common.pagination.css"/>
+    <link rel="stylesheet" href="/css/common.table.css"/>
+    <link rel="stylesheet" href="/css/common.page.css"/>
+    <link rel="stylesheet" href="../js/plugins/lightcode/prism.css" />
+    <script src="/js/jquery.js"></script>
+    <script src="/js/core.js"></script>
+    <script src="/js/core.preview.js"></script>
+    <script src="../js/demo.js"></script>
+    <style>
+        #center {padding:2rem;}
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p id="show">测试</p>
+        <pre>
+        firefox 50.0 input.value
+            yifei3.jpg
+        chrome 版本 42.0.2311.135 m input.value 
+            C:\fakepath\437190df2384f5dacf2db5789ac677cb_r.jpg.png
+        ie9 input.value 
+            C:\fakepath\437190df2384f5dacf2db5789ac677cb_r.jpg.png 
+        ie8 input.value
+            C:\fakepath\437190df2384f5dacf2db5789ac677cb_r.jpg.png 
+        ie7 input.value
+            C:\fakepath\437190df2384f5dacf2db5789ac677cb_r.jpg.png 
+
+        iframe内  终于解决了IE iframe中的预览问题但图片的尺寸还没能控制
+        firefox 50.0 input.value
+            yifei3.jpg
+        chrome 版本 42.0.2311.135 m input.value 
+            C:\fakepath\437190df2384f5dacf2db5789ac677cb_r.jpg.png
+        ie9 input.value 
+            ok
+        ie8 input.value 
+            ok
+        ie7 input.value 
+            ok
+        2017-7-17 10:13:07
+        这个功能废弃，统一使用文件上传
+        </pre>
+        <p>$.preview测试</p>
+        <div class="card">
+            <div class="ui">
+                <div style="background-color: red;">
+                    <label class="btn btn-info" for="txtAvatar">上传预览</label>
+                    <input id="txtAvatar" style="position:absolute;left: -100px; top: -100px; " type="file"/>
+                    <img id="imgAvatar" style="width:80px;height:60px;"/>
+                </div>
+                <script>
+                $('#imgAvatar').preview({ file: "txtAvatar",callback: function(){
+                    $('#imgAvatar').attr('src',this.value);
+                }});
+                </script>
+            </div>
+        </div>
+    </div>
+<script src="../js/plugins/lightcode/prism.js"></script>
+</body>
+</html>

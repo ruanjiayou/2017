@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="Author" content="阮家友">
+    <meta name="Keywords" content="HTML,model,test">
+    <meta name="Description" content="special effect">
+    <meta name="time" content="2015-9-27 10:41:48">
+    <link rel = "stylesheet" href="css/common.css" type="text/css"/>
+    <script src="../js/basis.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script src="../js/pagination2.js"></script>
+</head>
+<body>
+    <div id="center">
+        <p>分页：关于后退问题，Gavin是通过修改window.location来前进的 主要是如何使得页面被嵌入的情况下 是否能行</p>
+        <p>通过reload函数和cookie</p>
+        <div class="row">
+            <div class="box pad-T10 pad-B10">
+                <ul id="pagination" class="row-list clearfix"></ul>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    //传入容器的id input的class button的class
+    //与css中的样式对应
+    
+    pagination.init("pagination", "pageInput", "goto btn-sm mar-L10 pad-LR10");
+    console.log(document.cookie);
+</script>
+</body>
+</html>
