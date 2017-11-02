@@ -1,0 +1,405 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>记录HTML问题和小技巧</title>
+	<meta charset="UTF-8"　/>
+    <meta name="Author" content="阮家友">
+    <meta name="Keywords" content="HTML,model,test">
+    <meta name="Description" content="special effect">
+    <meta name="time" content="2015-9-27 10:41:48">
+    <link href="../css/reset.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+    html,body{height:100%;overflow-y:hidden;}
+    body{padding-top:30px;}
+    .lists {position:fixed;left:0;top:0;}
+    #center {width:800px;margin:0 auto;height:100%;overflow-y:auto;}
+    #center table {margin:30px 0;}
+    #center tr {height:30px;}
+    #center td {padding:10px;}
+    #center td img {width:100%;}
+    </style>
+</head>
+<body>
+    <div class="lists">
+        <ul>
+            <li title="HTMLwork/文档/40个小技巧.doc">js事件 40个小技巧.doc</li>
+            <li title="HTMLwork/文档/ajax.doc">ajax 讲解和实例</li>
+        </ul>
+    </div>
+    <div id="center">
+      <div>
+        <table>
+            <tbody>
+                <tr>
+                    <th>编号</th>
+                    <th>类型</th>
+                    <th>问题描述</th>
+                    <th>解决办法</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>bug</td>
+                    <td>
+                        换行造成有空隙
+                        <img src = "recorder_images/回车造成的空隙.png" alt="bug"/>
+                    </td>
+                    <td>
+                        设置border
+                        <img src = "recorder_images/border可以干掉回车造成的间隔.png" alt = "anwser" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>skill point</td>
+                    <td>line-height指的是什么</td>
+                    <td>line-height的%值是根据字体大小来计算的。font-size 14px 配合的line-height 150% 计算得到21px 。对块级元素才能实现垂直居中</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>skill point</td>
+                    <td>td的垂直居中</td>
+                    <td>td是默认垂直居中的 line-height 没作用</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>bug</td>
+                    <td>a标签:link样式失效</td>
+                    <td>href为空导致的 #</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>tips</td>
+                    <td>页面默认打开链接方式</td>
+                    <td>Base标签为页面上的所有链接规定默认地址或默认目标。
+在html网页中A超链接（锚文本）地址没有带http网址（域名）的链接，默认浏览器将会打开链接中补上base标签设置URL地址。
+HTML网页中a超链接中没有打开目标方式的，默认浏览器将会设置其base设置的打开方式。</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>tips</td>
+                    <td>table中td的边框 与留白</td>
+                    <td>border-collapse:合并边框 border-space:边框间的距离 控制的是td border-space会造成margin会无效 padding还是可以的</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>bug</td>
+                    <td>button有毒啊，aspx中他的单击绑定ajax readystate总是2</td>
+                    <td>不要用button！</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>bug</td>
+                    <td>form中的button未设置type属性时在非IE6 7 中具有submit属性</td>
+                    <td>不要用button！</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>tips</td>
+                    <td>document.body document.documentElement（html）</td>
+                    <td>全部都认得 这两个IE quirks 7 8 兼容 FF 45.0.1 opera 36.0.2130.46 chrome 44.0.2403.125 m</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>bug</td>
+                    <td>iframe 的边框 </td>
+                    <td>在IE中要设置frameborder=0</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>bug</td>
+                    <td>iframe的onload</td>
+                    <td>IE中父页面加载时就会执行iframe的onload一次，iframe无刷新上传提交又会执行一次。ff就只有后面的一次。IE要用attchEvent绑定FF直接onload=function就可以了</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>tips</td>
+                    <td>IE9才开始真正支持css3</td>
+                    <td>ie-css3.htc文件只能让IE78支持部分css3还有许多bug  且必须用后台！不然没效果</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>bug</td>
+                    <td>padding对 input["button"] 的无效  input["submit"] padding也无效  这两种 总是 比 text和password的宽度少2px</td>
+                    <td>用label 全浏览器支持</td>
+                </tr>
+                <tr>
+                    <td>24</td>
+                    <td>tips+bug</td>
+                    <td> input display:block;竟然不是占满</td>
+                    <td>width:100% 那padding就不能设了。input的padding必须要啊.用CSS3的box-sizing:border-box 配合Behaviour (boxsizing.htc)搞定所有浏览器。stackoverflow上的。本质原因是input计算宽度是靠size来的。没设置或小于1都是默认值：不会占满套个div padding:0 6px; 里面的input padding:5px;margin-left:-6px;width:100%;display:block; 来自大天朝的方案最完美</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td>tips+bug</td>
+                    <td> input display:inline;设置的width和height竟然有效</td>
+                    <td>img也是可以设置width和height的</td>
+                </tr>
+                <tr>
+                    <td>26</td>
+                    <td>tips</td>
+                    <td>input focus停在最后</td>
+                    <td>先focus 再设置value</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>tips</td>
+                    <td>input垂直居中</td>
+                    <td>FF默认垂直居中 IE使用line-height和height的方式  input[type="text"]{line-height:30px;} button则不能要 safari设置px无效 的设置为1才能居中
+                    其他浏览器 line-height:1; IE:line-height:40px\9;
+                    </td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>tips+bug</td>
+                    <td>input在div中垂直居中 vertical-align</td>
+                    <td>加了这个火狐不正常就用*hack方法。vertical-align: middle意味着当前元素需要一个参照物B，相对于这个B来确定是居上居下或者居中 AB是同辈元素，且必须inline-bock元素 &lt;i style='vertical-align:middle;display:inline-block;height:100%;width:0;overflow:hidden'&gt;&lt;/i&gt;</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>bug</td>
+                    <td>input在div中垂直居中 :after</td>
+                    <td>所有浏览器支持 IE7不行啊 且IE8文档声明要写成&lt;!DOCTYPE html&gt;</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>tips</td>
+                    <td>height:100%无效</td>
+                    <td>父容器要设置实际px高度 或者所有的祖先容器都设置height:100% 因为默认是auto无法计算百分比</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>tips+bug</td>
+                    <td>button line-height与height相等 不能垂直居中</td>
+                    <td>不要line-height 因为默认垂直居中</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td></td>
+                    <td>table width 100%在IE中出现了滚动条</td>
+                    <td>好像默认是100% 这句不加就好了 还是要加的 border与width:100%的矛盾</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>tips</td>
+                    <td>html css禁止双击选中文字</td>
+                    <td>
+-moz-user-select: none; /*火狐*/<br/>
+-webkit-user-select: none;  /*webkit浏览器*/<br/>
+-ms-user-select: none;   /*IE10*/<br/>
+-khtml-user-select: none; /*早期浏览器*/<br/>
+user-select: none;}</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>tips</td>
+                    <td>阻止拖拽</td>
+                    <td>&lt;body ondragstart="return false;"&gt;</td>
+                </tr>
+                <tr>
+                    <td>23</td>
+                    <td>bug</td>
+                    <td>IE 动态改了dom后无法F12查看dom setAttribute() 设置padding 可以 padding-left 无效！margin也一样</td>
+                    <td>所有浏览器支持 IE7不行啊 且IE8文档声明要写成&lt;!DOCTYPE html&gt;</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td>tips</td>
+                    <td>关于min-height</td>
+                    <td>min-height:100px;/*IE6无法正确解释,FF/CHROME可以*/ FF/CHROME能够解释!important并把它 height:auto 作为最高优先级的样式<br/>设置 height:100px; 由于IE6的特性，当内容高度超过100px时，能够自适应。不过，对于FF/CHROME，设置了height:100px;导致高度无法自适应。</td>
+                </tr>
+                <tr>
+                    <td>27</td>
+                    <td>tips</td>
+                    <td>media 媒体查询 max-device-width是指设备的最大 max-width是指浏览器的最大 但一定要加上&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>28</td>
+                    <td></td>
+                    <td>再谈块内的垂直居中</td>
+                    <td>display:table-cell;+vertical-align:middle; 当时看到这个心中一喜 测试topfix中的input心又是一凉 IE7及8的兼容不行啊 还是得用空标签 而且div不能水平居中了 后面网友说position: relative;  top: 50%;  transform: translateY(-50%); 也不行啊 </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>网友：神奇的iframe现象：居然能够自动触发onclick 事件，这是什么原因？？</td>
+                    <td>我笑抽了 尽量使用“;”号哦；在闭包前加</td>
+                    <td>onclick 后面的}后面缺个分号，你竟然想让iframe背锅</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>XHR 对象默认没有超时</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td>bug</td>
+                    <td>IE8 splice 的坑</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>31</td>
+                    <td>tips</td>
+                    <td>jQuery绑定窗口事件</td>
+                    <td>$(window).resize(function(){}) .scroll </td>
+                </tr>
+                <tr>
+                    <td>32</td>
+                    <td>tips</td>
+                    <td>jquery获取宽高</td>
+                    <td>window: .scrollTop() node: .width() .height()</td>
+                </tr>
+                <tr>
+                    <td>33</td>
+                    <td>tips</td>
+                    <td>obj.style["background-color"]="xxx"和obj.style["backgroundColor"]="xxx"</td>
+                    <td>前者ff chrome能行IE不行，后者都可以</td>
+                </tr>
+                <tr>
+                    <td>34</td>
+                    <td>tips</td>
+                    <td>inline-block 与inline在同行：前者top对齐，后者bottom对齐 即使高度一致也会将block撑开</td>
+                    <td>inline-block 给个vertical-align:bottom; </td>
+                </tr>
+                <tr>
+                    <td>35</td>
+                    <td></td>
+                    <td>块继承line-height 的问题</td>
+                    <td>line-height设置的百分比还好 如果是px就是大问题</td>
+                </tr>
+                <tr>
+                    <td>36</td>
+                    <td>tips</td>
+                    <td>ie input file 拒绝访问</td>
+                    <td>用label的for属性绑定</td>
+                </tr>
+                <tr>
+                    <td>37</td>
+                    <td>bug</td>
+                    <td>td height和line-height都为40px ，里面的div 只给line-height 100%就能垂直居中 加了height 100%反而不行FF42.0</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>38</td>
+                    <td>bug</td>
+                    <td>select 在IE7中无法定高度 IE8中定高度后无法垂直居中 safari只设置height无效配合line-height 才行</td>
+                    <td>高度定为 35px padding 7px 0 勉强这样 IE8中不如不定义边框套个div还好些  自己模拟个下拉框最好!!!</td>
+                </tr>
+                <tr>
+                    <td>39</td>
+                    <td>tips</td>
+                    <td>内联元素 padding和border 不参与定位 有显示 但在容器中是根据content来确定位置的！</td>
+                    <td>display inline-block就可以解决</td>
+                </tr>
+                <tr>
+                    <td>40</td>
+                    <td>tips</td>
+                    <td>昨天做过margin的实验。block 会使一直到body在内的父容器受他的margin影响。反继承一样</td>
+                    <td>zoom 1 + overflow hidden 可以解决</td>
+                </tr>
+                <tr>
+                    <td>41</td>
+                    <td>tips</td>
+                    <td>2017-3-27 21:35:22 bootstrap中table设置了width 100% 但内容过多时使得table出现滚动条</td>
+                    <td>要设置table-layout为fixed</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      height:100%; 一般要两个前提条件：1.父标签有设置高度 且不是auto 2.本身的属性 不能是inline
+
+并不是所有的inline不能设置宽高。img input就可以
+
+dpi 每英寸包含的点数 1in=72pt=96px=2.54cm
+
+类选择符高级用法：多类选择符 .a.b此例命中同时拥有.a和.b两个类的元素。需要注意的是IE6并不支持多类选择符，如：.a.b{}将会被视为：.b{}
+
+属性选择符基本都支持 运用到btn组这样的比较好
+
+:hover :active IE7开始支持所有元素
+
+:focus IE7不支持 IE8支持
+
+:first-child IE7开始都支持 :last-child IE9才开始支持
+
+::selection IE9才开始支持 火狐要加前缀
+
+:before :after IE8+支持
+
+a的href为空导致的:link失效
+
+想要iframe无边框在IE中要设置frameborder="0"
+
+曾经困扰我的button的内白色边框是outline
+    </div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

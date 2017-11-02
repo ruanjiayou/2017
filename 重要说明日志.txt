@@ -1,0 +1,307 @@
+2016-12-19 09:58:52
+    按功能模块为界限划分：
+        一个功能或一个模块为一个文件夹demo
+        model.jiayou.com作为插件js的cdn
+        要求每个demo有详细的环境信息、需求、使用方法
+          时间、系统、浏览器及其版本
+          预期的功能 不断优化 每个功能调整算一个大版本
+2016-12-24 09:35:42
+    用本地cdn终究不好
+2017-1-5 14:32:54
+    NewObject()函数微调 对tagname判断 设置对象的value还是innerHTML为txt
+2017-1-16 14:12:46       通用爬虫系统
+入口
+    理想模型   内容页规则
+    一文多页   分页规则
+    多重外壳   外壳规则列表
+模型数据库
+
+1.图片
+    
+2.文章
+    插件类：css可以通过js创建并插入到document中，图片可以生成base64
+2017-2-6 10:59:25
+    组件的开发：结构、样式、事件行为、
+    目标：快速的完成一个特定需求的可以被抽象和复用并且可以扩展的功能模块
+    特点：抽象，复用和可扩展，当然性能安全和易用（api设计等）
+    复用性提高的前提就是灵活的配置项，不约定死的html结构以及不强制依赖的css样式 通通用配置进行解耦
+    可以通过加attrs的方法来对html进行复用性的增强 data-*
+    扩展性我有几个基础的方法来做，一个是通过广播的行为，一个是通过继承的方式
+2017-3-2 22:50:10
+    目前常用的小封装：
+        adaptFontSize.js        core.mobile.adaptive.js
+        cookie.js               core.cookie.js
+        url2json.js             core.url.js
+        newobject.js            core.node.js
+        cssRuler.js             core.css.js
+        loading.js              core.loading.js
+        toast.js                core.toast.js
+        gettype.js              core.type.js
+        browserDetect.js        core.browser.js
+        CEvent.js               core.event.js
+        
+        fixedbottom.js          core.position.js
+        keyboard.js             core.keyboard.js
+        area.js                 core.area.js
+        switch.js               core.switch.js
+        color.js                core.color.js
+    以及针对IE的一套js：详情请见对应文件夹
+    组件封装：
+        area.js
+        numberInput.js          core.control.number.js
+        holder.js               core.control.holder.js
+        datepick.js             core.control.date.js
+        validation.js           core.control.validate.js
+        dialog.js               core.control.dialog.js
+        select.js               core.control.select.js
+        pagination.js           core.control.pagination.js
+        player.js               core.control.player.js
+        checkcho.js             core.control.checkbtn.js
+        tabs.js                 core.control.tabs.js
+        previewimage.js         core.control.previewImage.js
+        progress.js             core.control.progress.js
+        scrollbar.js            core.control.scrollBar.js
+        validCode.js            core.control.verificationCode.
+    还有其他的不常用的~~
+    2017-3-20 09:37:17 还是补上修改 通用的都放在了core.js 独立性强的单独一个文件 core.xxx.js
+2017-3-10 14:58:11
+    添加规范
+    1.demo使用文件夹
+    2.js文件 命名 连接符 小圆点？下划线？大驼峰？
+            用小圆点连接 所有字母小写
+      必写：作者、时间、联系、说明信息
+      注释
+    3.类、方法、变量命名
+      类统一用 CXxx 大小的C+首字母大小
+      常量：大写下划线连接
+      方法：大驼峰命名法?
+            成员方法 第一个动词小写其他大写首字母
+            单独一个词的首字母可以大小
+      参数：
+      变量：类内 m+大写驼峰命名
+    4.设计说明文件
+    5.记录日志文件
+2017-3-11 23:14:59
+    开始整合core js文件
+    2017-3-12 00:26:18 艰难的完成了一个 core.url.js
+    2017-3-12 13:20:18 core.js完成了 将之前的直接复制过来的
+    图片图集 https://baijiahao.baidu.com/u?app_id=1559142010556426&wfr=null&fr=followcon
+2017-3-13 15:12:20 
+    固定底部好了~ Firefox IE7/8/9都好的 最好不要设最外层的margin padding是可以的
+2017-3-14 09:05:25
+    看着昨天写的core.js 今天发现可能需要改改~
+    为什么呢？  看来自己架构的能力不行
+    根据关注的角度，软件架构分三种：一、逻辑架构 二、物理架构 三、非功能性特征，如可扩展性、可靠性、强壮性、灵活性、性能等
+
+    笔录的 在IE8/9中holder组件有问题 造成后续代码不执行了~
+           gif也有白边~ 看来还是得上canvas
+2017-3-15 01:12:02
+    又瞎搞一晚 居中问题
+2017-3-20 09:34:35
+    样式文件
+    √ common.css
+    √ table.css
+    √ button.css
+    check-radio.css
+    select.css
+    input.css
+    form.css
+    
+    一大问题是 没用less啊！
+    既然可以做得更好，就不应该懈怠。（暂时还是用这个吧~~）
+    
+    IMS iframe高度自适应问题
+2017-3-30 20:57:51
+    √ check-radio.css
+    √ form.css和page.css 改成了page.css和table.css
+    √ pagination样式和json
+    今晚主要是想到用js插入less样式再引入less.js CLess与CSheet共用原型 可是 没import功能
+    经过测试 style写上rel=stylesheet/less可以的
+2017-3-30 23:43:08
+    临时性 tip组件
+    一天天的都在干什么？做了什么？
+2017-4-1 15:48:36
+    CUrl有问题 
+    1.没测试过的。
+    2.必须依赖buildQuery函数   最好param中的json有buildQuery函数
+    3.如果后台做了路由 又要改
+    4.iframe中用到了top的东西 这是设计上的缺陷
+2017-4-7 16:39:26
+    js文件夹中加了个plugins文件夹 blog.net需要日期、验证和对话框插件
+2017-4-15 16:56:28
+    所有例子最初都是单个实现的如 mask.js menu.js 没有通用性 都很乱很随意
+    然后 在公装中逐渐单独处理select validate dialog 开始造轮子了 
+    基本放在model文件夹中 测试 webdemo 什么的
+    然后整理 到了js中 design 模式 看重记录和设计
+    接着申请放到公司服务器 SVN 先是一个整体文件。根据Ryan的意思 逐渐拆分为单个模块 自己也玩起了SVN
+2017-4-25 17:14:45
+    将原先的gulp改改拿来用 
+    cnpm install 根据package.json安装模块
+    gulp 直接运行
+    主要检查js文件
+2017-4-27 10:37:02
+    core.loading.js 隐藏Loading方法多了个字母
+    core.js NewNode对txt判断少了undefined
+    core.bottom.js 注释了console.log
+    core.pagination.js 修改 认识到data-*为自定义属性
+2017-4-28 08:34:56
+    core.js中加入window.log函数
+2017-4-28 10:15:57
+    IE中报错 json后面多了个逗号 jslint也没有检查出来！
+2017-4-28 10:53:53
+    preview低版本IE的iframe中始终有问题 网上说的focus其他元素也不行
+    11:22:01 终于解决了iframe中的预览问题但图片的尺寸还没能控制 最好控制file input 绝对定位 visibility hidden。display none是有问题的！！！
+2017-4-28 11:33:24
+    dialog在IE9中高度有问题 其他没问题。将odialogBox的高度去掉了
+2017-4-28 11:54:42
+    添加 core.upload.js 
+    2017-4-28 14:59:31 解决了跨域 但post后的option要进行处理！
+    2017-4-28 17:26:36 不跨域的情况下好一些。但IE9中target必须是字母！！！
+                       ie8中不能隐藏form 只能设置透明度为0！
+2017-5-3 11:16:13
+    分页pagination 打算加入 query sort部分
+2017-5-10 14:53:40
+    common.less中添加图片样式
+    必要的class和data-*换为更有语义的role
+    .row
+2017-5-17 15:42:46
+    新增mixins.less 自身不输入样式
+    上面的role有属性值限制 要用data-role
+2017-5-23 15:41:59
+    模块划分已经写了很多遍代码了
+    前端的vi设计具有指导作用 现在开始确定有哪些vi
+    核心的必不可少的： 1.颜色 2.全局样式 5.components 6.按钮 7.表格 8.page 10.布局 12.分页
+    核心的比较完整的： 1.颜色 2.全局样式 3.图标字体 5.components 6.按钮 7.表格 8.page 9.dropdown 10.布局 11.选项卡 12.分页 13.tooltip
+    
+    1.颜色
+        放弃bootstrap中的@gray变量 什么light dark完全没用 让人分不清
+        @灰度 *待定 文字 #444 背景 #f0f0f0 边框 #ccc
+        @color-primary 基准主色调    延伸：
+        @color-success 成功的颜色
+        @color-info    信息的颜色
+        @color-warning 警告的颜色
+        @color-error   错误的颜色
+    2.全局样式  字体 字号 文本颜色 背景颜色 链接4状态颜色
+        @body-bg
+        @body-text-color
+        @body-font-size 例如：1rem/14px
+        @link-color(包含visited)  情况不符合的自己另写样式
+        @link-hover-color
+        @link-active-color 
+    3.图标字体
+        @icon-font-name
+        @icon-font-path
+    4.排版    line-height title部分的样式 *待定
+    
+    5.components 组件公共部分样式统一
+        @component-padding-vertical
+        @component-padding-horizontal
+        @component-border-radius
+        @component-bg
+        @component-border-color
+        @component-caret-width
+    6.按钮    success info warning error等颜色已定义
+        (default) border link primary success info warning error
+        @btn-disabled-color
+        @btn-disabled-border
+        @btn-disabled-bg
+        @btn-padding-vertical
+        @btn-padding-horizontal
+        @btn-border-radius
+    7.表格
+        @table-border-color
+        @table-top-bg
+        @table-top-color
+        @table-odd-bg
+        @table-even-bg
+        @table-padding-horizontal
+        @table-padding-vertical
+    8.page query/info/list/form
+        @page-query-bg
+        
+        @page-info-bg
+        @page-info-border
+        @page-info-title-bg
+        
+        @page-list-top-bg
+        @page-list-top-color
+        @page-list-odd-bg
+        @page-list-even-bg
+        @page-list-padding-horizontal
+        @page-list-padding-vertical
+        
+    9.dropdown
+        color-base是不行的 以后再改
+    10.布局 包含栅格系统
+        @grid-column
+        @grid-offset
+    *11.选项卡 提供默认的组件
+        
+    12.分页
+        @pagination-color
+        @pagination-font-size
+        @pagination-disabled-color
+        @pagination-disabled-bg
+    13.tooltip
+        固定不变 黑底白字
+    14.进度条
+        固定不变 gray red blue green四色
+2017-5-26 15:53:22
+    经过与moon的测试的初步版本 历史性时刻mark
+2017-7-4 11:57:54
+    实际项目中运用 table增加sort功能
+    table有多个样式~~~日
+    config中增加tr：hover样式
+    实际项目中需要demo文件夹
+2017-7-7 13:43:15
+    table依赖dropdown中的caret样式
+2017-7-12 13:48:56
+    fixCUrl默认使用window.location.href 而不是 window.location.origin hasKey直接用if的真假判断特性
+    table的排序只有排序列才有hand光标
+2017-7-20 08:53:21
+    demo中加入代码高亮效果 demo.js控制 ui转code
+    待处理：table中col都不要 style都放到th上
+            radio、check init的时候将input包一层label
+            tip加方位参数支持
+    gulp默认任务中去掉images的 需要时自己 gulp images运行一下
+2017-7-21 10:13:51
+    关于表格：控制列宽度的尽量防止th中不放在col中精简代码 but 冻结效果没th需要col 表单信息模块 需要colgroup
+              tbody可以不写 colgroup 可以直接跟tr
+2017-7-21 16:19:01
+    关于prism高亮时页面原始结构已被修改：高亮在文档ready前进行 UI的js都在ready后执行
+2017-7-23 01:31:43
+    重写单选复选按钮 在代码中包裹input 分成两个文件
+2017-7-24 10:44:36
+    增加gulp-jsdoc3
+    全局模块默认安装在prefix目录
+    使用命令 npm config set prefix "D:\Program Files\npm_global_modules\node_modules"
+    cnpm prune 模块安装了未被项目使用
+2017-7-24 13:53:05
+    htmlhint插件 xmp内部的应该是文本 但img还是被识别为标签 报错 id必须唯一
+2017-7-25 20:11:55
+    placeholder中js line-height拼写错误 缺少text-indent属性 已补充！
+2017-7-27 14:42:55
+    vi配置中太简陋了 如分页 有很多配置的样式的
+    table中 top-color 忘记了
+    分页index==current href为javascript:;
+    pagination中数字变成string类型的处理
+    pagination li的margin样式 修复
+2017-8-4 19:48:16
+    不用传selector字段了 直接用jQuery的 $.fn.extend
+2017-8-7 21:05:09
+    从core.js index.html开始改 工作量巨大
+2017-8-7 23:21:46
+    立即执行函数要分隔符 不然 前面如果是函数就会立即执行 click事件也能模拟的！
+    +的形式有问题 ;和!都可以
+    2017-8-9 13:57:03 eslint警告; !可以
+    NewNode改为 $.createNode
+2017-8-21 16:49:27
+    input.number中callback要call this！
+    $.template 值为0 就没有了 真假值判断不能用隐式的！
+2017-8-24 09:57:18
+    立即执行函数的格式确定为 ;(function(){}());
+    jshint eslint都可以了 eslint中要设置 no-extra-semi off
+    checkbox中callback this指向要改
+2017-8-25 15:52:31
+    如何新建项目：vscode 打开文件夹 新建.vscode文件夹 添加.eslintrc.json文件
+    

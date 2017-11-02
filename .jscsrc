@@ -1,0 +1,4 @@
+{
+    //编码风格规范 基准 node-style-guide
+    "preset": "node-style-guide"
+}

@@ -1,0 +1,12 @@
+{
+    "unused": true,
+    "scripturl":true,
+    "globals": {"$": true, "require": true },
+    "immed": false,
+    "curly": true,
+    "eqeqeq": true,
+    "quotmark": "single",
+    "futurehostile": true,
+    "onevar": true,
+    "plusplus": false
+}

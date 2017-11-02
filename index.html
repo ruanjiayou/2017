@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="Author" content="阮家友"/>
+    <meta name="Keywords" content="HTML,model,test"/>
+    <meta name="Description" content="special effect model"/>
+    <meta name="time" content="2015-9-27 10:41:48"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>目录</title>
+    <base target="_blank"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/core.js"></script>
+    <style>
+        #center {padding:2rem;}
+    </style>
+</head>
+<body>
+    <div id="center">
+        <p id="show"><a href="file:///d://website/项目规范.txt">项目规范</a></p>
+        <xmp>
+        1.一个团队项目的必要约定：
+        2.文件命名(下划线还是中划线可以打起来)、
+        3.增删查改日志记录：
+        4.数据交接：有需求一定要有文档
+        5.url 登录名 密码等 适合的开发环境~上了wechat不能调试 考勤终端不能调试
+        6.接手任务--》明确需求--》先决条件--》修改--》测试--》完成汇报
+        组件模块：1.configuration 差全局变量 2.common
+            基础模块 初始化样式、layout、按钮、表格、表单、单选复选框、分页、对话框、loading、toast、
+                   文件上传、  (差多文件上传处理)
+                   进度条、    (差步骤条)
+                   滚动条、     
+                   验证、      ()
+                   tip提示、   (差position/arrow direction/)
+                   标徽、
+                   万能切换、  ()
+                   下拉框 contextmenu样式、
+                   Popover/dropdown、
+                   日期选择、
+                   数字加减、
+                   地址选择、
+                   虚拟键盘、
+                   步骤、
+                   手势、
+                   label Tag、
+                   switch、  (差触屏手势)
+                   
+        </xmp>
+        <ul class="items">
+            <li><a href="config.html">less变量</a></li>
+            <li><a href="dev-UI-button按钮/按钮.html">按钮</a></li>
+            <li><a href="dev-UI-layout/demo.html">布局</a></li>
+            <li><a href="dev-UI-table/Table测试.html">Table测试</a></li>
+            <li><a href="dev-UI-管理系统/管理系统.html">管理系统</a></li>
+            <li><a href="dev-UI-check-radio/单选复选框.html">×单选复选框</a></li>
+            <li><a href="dev-UI-check-radio/UI-checkbox.html">复选框</a></li>
+            <li><a href="dev-UI-check-radio/UI-radio.html">单选按钮</a></li>
+            <li><a href="dev-UI-previewImage/preview.html">图片预览</a></li>
+            <li><a href="dev-UI-文件上传/文件上传.html">文件上传</a></li>
+            <li><a href="dev-UI-分页/分页.html">分页</a></li>
+            <li><a href="dev-UI-tip提示/tip提示.html">tip提示</a></li>
+            <li><a href="dev-UI-进度条/步骤进度条.html">步骤进度条</a></li>
+            <li><a href="dev-UI-进度条/进度条.html">进度条</a></li>
+            <li><a href="dev-UI-标徽数/badge.html">标徽数</a></li>
+            <li><a href="dev-switch万能切换/测试switch.html">switch万能切换</a></li>
+            <li><a href="dev-UI-滚动条/scrollbar.html">滚动条</a></li>
+            <li><a href="dev-me-对话框/测试-对话框.html">对话框</a></li>
+            <li><a href="dev-UI-dropdown/dropdown.html">dropdown</a></li>
+            <li><a href="dev-UI-input-group/input-group.html">input-group</a></li>
+            <li><a href="dev-player/demo.html">播放器</a></li>
+            <li><a href="dev-遮罩loading与提示/notify.html">loading与toast</a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="dev-input系列/日期选择、后缀图标、搜索.html">placeholder</a></li>
+            <li><a href="dev-input系列/input数字加减.html">input.number</a></li>
+        </ul>
+    </div>
+<script>
+$.sheet({
+    ".items":"background-color: #eee;border-left: 5px solid #558ABB;width: 300px;padding: 10px 0;counter-reset: linenumbera;height: 80%;overflow-y: hidden;",
+    ".items > li":"height: 30px;line-height: 30px;",
+    ".items > li > a":"white-space: nowrap;text-overflow: ellipsis;overflow: hidden;display: block;",
+    ".items > li > a:before":"counter-increment: linenumbera;display: inline-block;width: 25px;text-align: right;height: 100%;margin: 0 5px;border-right: 1px solid #999;padding-right: 5px;content: ' ' counter(linenumbera) '. ';"
+});
+</script>
+</body>
+</html>
